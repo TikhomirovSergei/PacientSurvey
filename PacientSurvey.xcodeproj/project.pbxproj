@@ -76,6 +76,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C603C96252CB5C2002FA730 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				7CAF491D24E523D300772BCD /* AppDelegate.swift */,
+				7CAF491F24E523D300772BCD /* SceneDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		7C603C97252CB5F1002FA730 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7CAF492324E523D500772BCD /* Assets.xcassets */,
+				7CAF492824E523D500772BCD /* LaunchScreen.storyboard */,
+				7CAF492624E523D500772BCD /* Preview Assets.xcassets */,
+				7CAF492B24E523D500772BCD /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7C603C98252CB62E002FA730 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7CAF492124E523D300772BCD /* ContentView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7C603C99252CB6FC002FA730 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7C603C9A252CB712002FA730 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7C603C9B252CB71B002FA730 /* Injected */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Injected;
+			sourceTree = "<group>";
+		};
+		7C603C9C252CB739002FA730 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7C603C9D252CB74C002FA730 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
+		7C603C9E252CB759002FA730 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7CAF491124E523D300772BCD = {
 			isa = PBXGroup;
 			children = (
@@ -99,23 +169,17 @@
 		7CAF491C24E523D300772BCD /* PacientSurvey */ = {
 			isa = PBXGroup;
 			children = (
-				7CAF491D24E523D300772BCD /* AppDelegate.swift */,
-				7CAF491F24E523D300772BCD /* SceneDelegate.swift */,
-				7CAF492124E523D300772BCD /* ContentView.swift */,
-				7CAF492324E523D500772BCD /* Assets.xcassets */,
-				7CAF492824E523D500772BCD /* LaunchScreen.storyboard */,
-				7CAF492B24E523D500772BCD /* Info.plist */,
-				7CAF492524E523D500772BCD /* Preview Content */,
+				7C603C99252CB6FC002FA730 /* Persistence */,
+				7C603C96252CB5C2002FA730 /* System */,
+				7C603C9A252CB712002FA730 /* Utilities */,
+				7C603C9B252CB71B002FA730 /* Injected */,
+				7C603C9C252CB739002FA730 /* Repositories */,
+				7C603C9D252CB74C002FA730 /* Interactors */,
+				7C603C9E252CB759002FA730 /* Models */,
+				7C603C98252CB62E002FA730 /* UI */,
+				7C603C97252CB5F1002FA730 /* Resources */,
 			);
 			path = PacientSurvey;
-			sourceTree = "<group>";
-		};
-		7CAF492524E523D500772BCD /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				7CAF492624E523D500772BCD /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		7CAF493324E523D500772BCD /* PacientSurveyTests */ = {
@@ -435,10 +499,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"PacientSurvey/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PacientSurvey/Resources\"";
 				DEVELOPMENT_TEAM = U8282TLYV5;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = PacientSurvey/Info.plist;
+				INFOPLIST_FILE = PacientSurvey/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,10 +519,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"PacientSurvey/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PacientSurvey/Resources\"";
 				DEVELOPMENT_TEAM = U8282TLYV5;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = PacientSurvey/Info.plist;
+				INFOPLIST_FILE = PacientSurvey/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
