@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Карта сестринского наблюдения за пациеном" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MP-cy-181">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient Nursing Care Card" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MP-cy-181">
                                 <rect key="frame" x="20" y="243" width="374" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="cLu-mq-UWN"/>
@@ -36,10 +36,10 @@
                         <constraints>
                             <constraint firstItem="Sm8-Gq-7ng" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4hd-a5-AdA"/>
                             <constraint firstItem="Sm8-Gq-7ng" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9wP-uu-bCO"/>
-                            <constraint firstItem="8MP-cy-181" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="A0H-mZ-JPF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8MP-cy-181" secondAttribute="trailing" constant="20" id="FMW-fh-YEZ"/>
+                            <constraint firstItem="8MP-cy-181" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JQv-Xr-lZE"/>
                             <constraint firstItem="8MP-cy-181" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RR9-4X-Cuy"/>
                             <constraint firstItem="8MP-cy-181" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-130" id="c4f-VF-OYp"/>
-                            <constraint firstAttribute="trailing" secondItem="8MP-cy-181" secondAttribute="trailing" constant="20" id="zp4-Oi-wDK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
