@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  PacientSurvey
+
+  Created by Sergey Tikhomirov on 07.10.2020.
+  Copyright © 2020 Sergey Tikhomirov. All rights reserved.
+*/
+"Welcome to the program for" = "Приветствуем Вас в программе по проведению";
+"Comprehensive Geriatric Assessment" = "\"Комплексной гериатрической оценки\"";
+"Start inspection" = "Начать осмотр";
+"Continue inspection" = "Продолжить осмотр";
+"Show inspection list" = "Показать список осмотров";
+"Observation map" = "Карта наблюдения";

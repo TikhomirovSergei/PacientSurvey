@@ -21,7 +21,7 @@ struct RootView: View {
                     self.footerView(geometry)
                 }
             }
-                .navigationBarTitle("Карта наблюдения")
+                .navigationBarTitle("Observation map")
                 .navigationBarHidden(self.isNavigationBarHidden)
                 .onAppear { self.isNavigationBarHidden = true }
         }
@@ -47,11 +47,11 @@ private extension RootView {
     func bodyView(_ geometry: GeometryProxy) -> some View {
         HStack() {
             VStack {
-                Text("Приветствуем Вас в программе по проведению")
+                Text("Welcome to the program for")
                     .font(.system(size: 20))
                     .multilineTextAlignment(.center)
                     .padding()
-                Text("\"Комплексной гериатрической оценки\"")
+                Text("Comprehensive Geriatric Assessment")
                     .font(.system(size: 28))
                     .fontWeight(.bold)
                     .frame(width: geometry.size.width)
@@ -60,7 +60,7 @@ private extension RootView {
                 Button(action: {
                     print("test")
                 }, label: {
-                    Text("Начать осмотр")
+                    Text("Start inspection")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
@@ -73,7 +73,7 @@ private extension RootView {
                 Button(action: {
                     print("test")
                 }, label: {
-                    Text("Продолжить осмотр")
+                    Text("Continue inspection")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
@@ -92,7 +92,7 @@ private extension RootView {
             Button(action: {
                 print("test")
             }, label: {
-                Text("Показать список осмотров")
+                Text("Show inspection list")
                     .font(.system(size: 18))
                     .fontWeight(.bold)
             })
