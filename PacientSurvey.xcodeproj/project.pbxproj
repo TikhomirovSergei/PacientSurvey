@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7C603CA2252E49D2002FA730 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C603CA4252E49D2002FA730 /* Localizable.strings */; };
+		7C603CAB252EF6FF002FA730 /* PacientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C603CAA252EF6FF002FA730 /* PacientView.swift */; };
 		7CAF491E24E523D300772BCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF491D24E523D300772BCD /* AppDelegate.swift */; };
 		7CAF492024E523D300772BCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF491F24E523D300772BCD /* SceneDelegate.swift */; };
 		7CAF492224E523D300772BCD /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF492124E523D300772BCD /* RootView.swift */; };
@@ -16,6 +17,10 @@
 		7CAF492A24E523D500772BCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF492824E523D500772BCD /* LaunchScreen.storyboard */; };
 		7CAF493524E523D500772BCD /* PacientSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF493424E523D500772BCD /* PacientSurveyTests.swift */; };
 		7CAF494024E523D500772BCD /* PacientSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF493F24E523D500772BCD /* PacientSurveyUITests.swift */; };
+		7CE688E6252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */; };
+		7CE688EC252F47F2001C2C27 /* RadioGroup in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE688EB252F47F2001C2C27 /* RadioGroup */; };
+		7CE688EE252F50AB001C2C27 /* ProblemModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688ED252F50AB001C2C27 /* ProblemModal.swift */; };
+		7CE688F2252F530C001C2C27 /* PromlemModalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688F1252F530C001C2C27 /* PromlemModalCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,7 @@
 		7C603CA5252E4B1A002FA730 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C603CA7252E4FC8002FA730 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7C603CA9252E502D002FA730 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7C603CAA252EF6FF002FA730 /* PacientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacientView.swift; sourceTree = "<group>"; };
 		7CAF491A24E523D300772BCD /* PacientSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PacientSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAF491D24E523D300772BCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CAF491F24E523D300772BCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +60,8 @@
 		7CAF493B24E523D500772BCD /* PacientSurveyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PacientSurveyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAF493F24E523D500772BCD /* PacientSurveyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacientSurveyUITests.swift; sourceTree = "<group>"; };
 		7CAF494124E523D500772BCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CE688ED252F50AB001C2C27 /* ProblemModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModal.swift; sourceTree = "<group>"; };
+		7CE688F1252F530C001C2C27 /* PromlemModalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromlemModalCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE688EC252F47F2001C2C27 /* RadioGroup in Frameworks */,
+				7CE688E6252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +115,7 @@
 		7C603C98252CB62E002FA730 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7CE688E7252F4188001C2C27 /* Components */,
 				7C603C9F252E46FA002FA730 /* Screens */,
 			);
 			path = UI;
@@ -148,6 +159,7 @@
 		7C603C9E252CB759002FA730 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7CE688ED252F50AB001C2C27 /* ProblemModal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				7CAF492124E523D300772BCD /* RootView.swift */,
+				7C603CAA252EF6FF002FA730 /* PacientView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -214,6 +227,14 @@
 			path = PacientSurveyUITests;
 			sourceTree = "<group>";
 		};
+		7CE688E7252F4188001C2C27 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7CE688F1252F530C001C2C27 /* PromlemModalCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,6 +251,10 @@
 			dependencies = (
 			);
 			name = PacientSurvey;
+			packageProductDependencies = (
+				7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */,
+				7CE688EB252F47F2001C2C27 /* RadioGroup */,
+			);
 			productName = PacientSurvey;
 			productReference = 7CAF491A24E523D300772BCD /* PacientSurvey.app */;
 			productType = "com.apple.product-type.application";
@@ -303,6 +328,10 @@
 				ru,
 			);
 			mainGroup = 7CAF491124E523D300772BCD;
+			packageReferences = (
+				7CE688E4252E6022001C2C27 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */,
+				7CE688EA252F47F2001C2C27 /* XCRemoteSwiftPackageReference "RadioGroup" */,
+			);
 			productRefGroup = 7CAF491B24E523D300772BCD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -347,9 +376,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE688F2252F530C001C2C27 /* PromlemModalCell.swift in Sources */,
+				7CE688EE252F50AB001C2C27 /* ProblemModal.swift in Sources */,
 				7CAF491E24E523D300772BCD /* AppDelegate.swift in Sources */,
 				7CAF492024E523D300772BCD /* SceneDelegate.swift in Sources */,
 				7CAF492224E523D300772BCD /* RootView.swift in Sources */,
+				7C603CAB252EF6FF002FA730 /* PacientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +719,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7CE688E4252E6022001C2C27 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishanraja/FloatingLabelTextFieldSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+		7CE688EA252F47F2001C2C27 /* XCRemoteSwiftPackageReference "RadioGroup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/RadioGroup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CE688E4252E6022001C2C27 /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */;
+			productName = FloatingLabelTextFieldSwiftUI;
+		};
+		7CE688EB252F47F2001C2C27 /* RadioGroup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CE688EA252F47F2001C2C27 /* XCRemoteSwiftPackageReference "RadioGroup" */;
+			productName = RadioGroup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7CAF491224E523D300772BCD /* Project object */;
 }

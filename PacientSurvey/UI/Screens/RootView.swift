@@ -21,7 +21,7 @@ struct RootView: View {
                     self.footerView(geometry)
                 }
             }
-                .navigationBarTitle("Observation map")
+                .navigationBarTitle("")
                 .navigationBarHidden(self.isNavigationBarHidden)
                 .onAppear { self.isNavigationBarHidden = true }
         }
@@ -57,14 +57,12 @@ private extension RootView {
                     .frame(width: geometry.size.width)
                     .multilineTextAlignment(.center)
 
-                Button(action: {
-                    print("test")
-                }, label: {
+                NavigationLink(destination: PacientView(isNavigationBarHidden: self.$isNavigationBarHidden), label: {
                     Text("Start inspection")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
-                    .frame(width: geometry.size.width - 80, height: 50)
+                    .frame(width: 300, height: 50)
                     .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                     .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
                     .cornerRadius(25)
@@ -77,7 +75,7 @@ private extension RootView {
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
-                    .frame(width: geometry.size.width - 80, height: 50)
+                    .frame(width: 300, height: 50)
                     .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                     .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
                     .cornerRadius(25)
@@ -97,7 +95,7 @@ private extension RootView {
                     .fontWeight(.bold)
             })
                 .padding()
-                .frame(width: geometry.size.width - 80, height: 50)
+                .frame(width: 300, height: 50)
                 .accentColor(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
                 .background(Color.init(#colorLiteral(red: 0.9497030377, green: 0.9456732869, blue: 0.9528283477, alpha: 1)))
                 .cornerRadius(25)
