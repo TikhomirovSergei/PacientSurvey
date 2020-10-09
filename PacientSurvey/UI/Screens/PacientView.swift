@@ -10,6 +10,9 @@ import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 import RadioGroup
 
+let statusArray: [String] = ["Женат/замужем", "Не женат/не замужем", "Вдовец/вдова", "В разводе"]
+let resideArray: [String] = ["С женой/мужем", "Один", "С детьми", "Другое"]
+
 struct PacientView: View {
 
     @Binding var isNavigationBarHidden: Bool
@@ -20,12 +23,12 @@ struct PacientView: View {
     @State private var room: String = ""
     @State private var receiptDate: String = ""
     @State private var dischargeDate: String = ""
-    @State private var status: Int = 0
+    @State private var status: String = statusArray[0]
     @State private var contactPerson: String = ""
     @State private var phoneNumber: String = ""
     @State private var doctor: String = ""
     @State private var completionDate: String = ""
-    @State private var resideStatus: Int = 0
+    @State private var resideStatus: String = resideArray[0]
     @State private var resideText: String = ""
     @State private var problems: [ProblemModal] = [
         ProblemModal(id: 0, title: "общая слабость", isSelected: false),
@@ -44,6 +47,8 @@ struct PacientView: View {
         ProblemModal(id: 13, title: "другое", isSelected: false),
     ]
     @State private var specificPromlem: String = ""
+    @State private var showingStatusActionSheet = false
+    @State private var showingResideStatusActionSheet = false
 
     var body: some View {
         ScrollView {
@@ -60,32 +65,59 @@ struct PacientView: View {
                     self.setStringTextField($doctor, doctor, "Ф.И.О, лечащего врача")
                     self.setStringTextField($completionDate, completionDate, "Дата заполнения")
                 }
+                
+                GeometryReader { geometry in
+                    VStack(alignment: .leading) {
+                        HStack() {
+                            Text("Семейный статус:")
+                                .fontWeight(.bold)
+                                .actionSheet(isPresented: $showingStatusActionSheet) {
+                                    ActionSheet(title: Text("Семейный статус"), buttons: statusArray.map { item in
+                                        .default(Text(item)) { self.status = item }
+                                    })
+                                }
+                                .multilineTextAlignment(.leading)
+                                .frame(width: geometry.size.width / 2)
+                            Text(self.status)
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: geometry.size.width / 2)
+                        }
+                        .onTapGesture {
+                            self.showingStatusActionSheet = true
+                        }
+                        .padding(.bottom, 5)
+                        
+                        HStack() {
+                            Text("С кем проживает:")
+                                .fontWeight(.bold)
+                                .actionSheet(isPresented: $showingResideStatusActionSheet) {
+                                    ActionSheet(title: Text("С кем проживает"), buttons: resideArray.map { item in
+                                        .default(Text(item)) { self.resideStatus = item }
+                                    })
+                                }
+                                .multilineTextAlignment(.leading)
+                                .frame(width: geometry.size.width / 2)
+                            Text(self.resideStatus)
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: geometry.size.width / 2)
+                        }
+                        .onTapGesture {
+                            self.showingResideStatusActionSheet = true
+                        }
+                    }
+                    .padding(.top, 15)
+                    .padding(.bottom, 15)
+                    .padding(.leading, -5)
+                }
 
-                Text("Семейный статус:")
-                    .fontWeight(.bold)
-                    .padding(.top, 20)
-                    .padding(.bottom, -10)
-                    .padding(.leading, 10)
-                RadioGroupPicker(selectedIndex: $status, titles: ["Женат/замужем", "Не женат/не замужем", "Вдовец/вдова", "В разводе"])
-                    .frame(height: 120)
-                    .padding(.bottom, -10)
-
-                Text("С кем проживает:")
-                    .fontWeight(.bold)
-                    .padding(.top, 20)
-                    .padding(.bottom, -10)
-                    .padding(.leading, 10)
-                RadioGroupPicker(selectedIndex: $resideStatus, titles: ["С женой/мужем", "Один", "С детьми", "Другое"])
-                    .frame(height: 120)
-                    .padding(.bottom, -10)
-
-                if (resideStatus == 3) {
+                if (resideStatus == resideArray[3]) {
                     self.setStringTextField($resideText, resideText, "Введите жильцов")
+                        .padding(.top, 50)
                 }
 
                 Text("Основные проблемы")
                     .fontWeight(.bold)
-                    .padding(.top, 20)
+                    .padding(.top, resideStatus == resideArray[3] ? 10 : 60)
                     .padding(.leading, 10)
                 VStack(alignment: .leading) {
                     ForEach(problems.indices, id: \.self) { index in
