@@ -8,7 +8,6 @@
 
 import SwiftUI
 import FloatingLabelTextFieldSwiftUI
-import RadioGroup
 
 let statusArray: [String] = ["Женат/замужем", "Не женат/не замужем", "Вдовец/вдова", "В разводе"]
 let resideArray: [String] = ["С женой/мужем", "Один", "С детьми", "Другое"]
@@ -66,58 +65,31 @@ struct PacientView: View {
                     self.setStringTextField($completionDate, completionDate, "Дата заполнения")
                 }
                 
-                GeometryReader { geometry in
-                    VStack(alignment: .leading) {
-                        HStack() {
-                            Text("Семейный статус:")
-                                .fontWeight(.bold)
-                                .actionSheet(isPresented: $showingStatusActionSheet) {
-                                    ActionSheet(title: Text("Семейный статус"), buttons: statusArray.map { item in
-                                        .default(Text(item)) { self.status = item }
-                                    })
-                                }
-                                .multilineTextAlignment(.leading)
-                                .frame(width: geometry.size.width / 2)
-                            Text(self.status)
-                                .multilineTextAlignment(.trailing)
-                                .frame(width: geometry.size.width / 2)
-                        }
-                        .onTapGesture {
-                            self.showingStatusActionSheet = true
-                        }
-                        .padding(.bottom, 5)
+                VStack(alignment: .leading) {
+                    LineWithActionSheetView(
+                        title: "Семейный статус:",
+                        arrayList: statusArray,
+                        isShowActionsSheet: $showingStatusActionSheet,
+                        status: $status)
                         
-                        HStack() {
-                            Text("С кем проживает:")
-                                .fontWeight(.bold)
-                                .actionSheet(isPresented: $showingResideStatusActionSheet) {
-                                    ActionSheet(title: Text("С кем проживает"), buttons: resideArray.map { item in
-                                        .default(Text(item)) { self.resideStatus = item }
-                                    })
-                                }
-                                .multilineTextAlignment(.leading)
-                                .frame(width: geometry.size.width / 2)
-                            Text(self.resideStatus)
-                                .multilineTextAlignment(.trailing)
-                                .frame(width: geometry.size.width / 2)
-                        }
-                        .onTapGesture {
-                            self.showingResideStatusActionSheet = true
-                        }
-                    }
-                    .padding(.top, 15)
-                    .padding(.bottom, 15)
-                    .padding(.leading, -5)
+                    LineWithActionSheetView(
+                        title: "С кем проживает:",
+                        arrayList: resideArray,
+                        isShowActionsSheet: $showingResideStatusActionSheet,
+                        status: $resideStatus)
                 }
+                .padding(.vertical, 15)
+                .padding(.leading, -5)
+                .padding(.trailing, 15)
 
                 if (resideStatus == resideArray[3]) {
                     self.setStringTextField($resideText, resideText, "Введите жильцов")
-                        .padding(.top, 50)
+                        .padding(.top, -20)
+                        .padding(.bottom, 10)
                 }
 
                 Text("Основные проблемы")
                     .fontWeight(.bold)
-                    .padding(.top, resideStatus == resideArray[3] ? 10 : 60)
                     .padding(.leading, 10)
                 VStack(alignment: .leading) {
                     ForEach(problems.indices, id: \.self) { index in
