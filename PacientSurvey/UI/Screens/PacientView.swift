@@ -12,35 +12,35 @@ import FloatingLabelTextFieldSwiftUI
 struct PacientView: View {
 
     @Binding var isNavigationBarHidden: Bool
-
-    @State private var username: String = ""
-    @State private var age: String = ""
-    @State private var departament: String = ""
-    @State private var room: String = ""
-    @State private var receiptDate: Date = Date()
-    @State private var status: String = statusArray[0]
-    @State private var contactPerson: String = ""
-    @State private var phoneNumber: String = ""
-    @State private var doctor: String = ""
-    @State private var resideStatus: String = resideArray[0]
-    @State private var resideText: String = ""
-    @State private var problems: [ProblemModal] = [
-        ProblemModal(id: 0, title: "общая слабость", isSelected: false),
-        ProblemModal(id: 1, title: "утомляемость, снижение мобильности", isSelected: false),
-        ProblemModal(id: 2, title: "снижение слуха и зрения", isSelected: false),
-        ProblemModal(id: 3, title: "снижение памяти на текущие события", isSelected: false),
-        ProblemModal(id: 4, title: "головокружение", isSelected: false),
-        ProblemModal(id: 5, title: "запоры", isSelected: false),
-        ProblemModal(id: 6, title: "снижение аппетита", isSelected: false),
-        ProblemModal(id: 7, title: "снижение эмоциональной стабильности", isSelected: false),
-        ProblemModal(id: 8, title: "плаксивость", isSelected: false),
-        ProblemModal(id: 9, title: "боли в пояснично-крестцовом отделе", isSelected: false),
-        ProblemModal(id: 10, title: "боли в суставах", isSelected: false),
-        ProblemModal(id: 11, title: "головная боль", isSelected: false),
-        ProblemModal(id: 12, title: "падения шаткости походки", isSelected: false),
-        ProblemModal(id: 13, title: "другое", isSelected: false),
+    
+    @State var username: String = ""
+    @State var age: String = ""
+    @State var departament: String = ""
+    @State var room: String = ""
+    @State var contactPerson: String = ""
+    @State var phoneNumber: String = ""
+    @State var doctorName: String = ""
+    @State var receiptDate: Date = Date()
+    @State var status: String = statusArray[0]
+    @State var resideStatus: String = resideArray[0]
+    @State var resideText: String = ""
+    @State private var problems: [ProblemModel] = [
+        ProblemModel(id: 0, title: "общая слабость", isSelected: false),
+        ProblemModel(id: 1, title: "утомляемость, снижение мобильности", isSelected: false),
+        ProblemModel(id: 2, title: "снижение слуха и зрения", isSelected: false),
+        ProblemModel(id: 3, title: "снижение памяти на текущие события", isSelected: false),
+        ProblemModel(id: 4, title: "головокружение", isSelected: false),
+        ProblemModel(id: 5, title: "запоры", isSelected: false),
+        ProblemModel(id: 6, title: "снижение аппетита", isSelected: false),
+        ProblemModel(id: 7, title: "снижение эмоциональной стабильности", isSelected: false),
+        ProblemModel(id: 8, title: "плаксивость", isSelected: false),
+        ProblemModel(id: 9, title: "боли в пояснично-крестцовом отделе", isSelected: false),
+        ProblemModel(id: 10, title: "боли в суставах", isSelected: false),
+        ProblemModel(id: 11, title: "головная боль", isSelected: false),
+        ProblemModel(id: 12, title: "падения шаткости походки", isSelected: false),
+        ProblemModel(id: 13, title: "другое", isSelected: false),
     ]
-    @State private var specificProblem: String = ""
+    @State var specificProblem: String = ""
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
 
@@ -48,28 +48,16 @@ struct PacientView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    self.setStringTextField($username, username, "Ф.И.О. пациента")
-                    self.setIntTextField($age, age, "Возраст")
-                    self.setStringTextField($departament, departament, "Отделение")
-                    self.setIntTextField($room, room, "№ палаты")
-                    self.setStringTextField($contactPerson, contactPerson, "Контактное лицо")
-                    self.setTelNumberTextField($phoneNumber, phoneNumber, "Номер телефона")
-                    self.setStringTextField($doctor, doctor, "Ф.И.О, лечащего врача")
+                    StringTextFieldView(placeholder: "Ф.И.О. пациента", field: $username)
+                    NumberTextFieldView(placeholder: "Возраст", isPhoneNumber: false, field: $age)
+                    StringTextFieldView(placeholder: "Отделение", field: $departament)
+                    NumberTextFieldView(placeholder: "№ палаты", isPhoneNumber: false, field: $room)
+                    StringTextFieldView(placeholder: "Контактное лицо", field: $contactPerson)
+                    NumberTextFieldView(placeholder: "Номер телефона", isPhoneNumber: true, field: $phoneNumber)
+                    StringTextFieldView(placeholder: "Ф.И.О. лечащего врача", field: $doctorName)
                 }
                 
-                VStack(alignment: .leading) {
-                    DatePicker("Дата поступления", selection: self.$receiptDate, displayedComponents: .date)
-                        .foregroundColor(.black)
-                        .padding(.top, 15)
-                        .padding(.leading, 12)
-                        .padding(.trailing, 12)
-                    
-                    Divider()
-                        .frame(height: 1)
-                        .background(Color.black)
-                        .padding(.horizontal, 10)
-                        .padding(.top, -7)
-                }
+                LineWithDatePicker(title: "Дата поступления", date: $receiptDate)
                 
                 LineWithActionSheetView(
                     title: "Семейный статус",
@@ -83,8 +71,8 @@ struct PacientView: View {
                     isShowActionsSheet: $showingResideStatusActionSheet,
                     status: $resideStatus)
 
-                if (resideStatus == resideArray[3]) {
-                    self.setStringTextField($resideText, resideText, "Введите жильцов")
+                if (resideStatus == resideArray.last) {
+                    StringTextFieldView(placeholder: "Введите жильцов", field: $resideText)
                         .padding(.top, -10)
                         .padding(.bottom, 10)
                 }
@@ -94,103 +82,28 @@ struct PacientView: View {
                     .padding(.leading, 10)
                 VStack(alignment: .leading) {
                     ForEach(problems.indices, id: \.self) { index in
-                        ProblemModalCell(problem: self.$problems[index])
-                    }
-                        .frame(height: 20)
+                        ProblemCell(problem: self.$problems[index])
+                    }.frame(height: 20)
                 }
 
-                if (self.problems[13].isSelected) {
-                    self.setStringTextField($specificProblem, specificProblem, "Введите проблему")
+                if (self.problems.last?.isSelected == true) {
+                    StringTextFieldView(placeholder: "Введите проблему", field: $specificProblem)
                 }
 
                 Spacer()
             }
         }
             .gesture(
-                TapGesture()
-                    .onEnded { _ in
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                TapGesture().onEnded { _ in
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
             )
             .navigationBarTitle(
                 Text("Общая информация о пациенте"), displayMode: .inline)
             .navigationBarItems(trailing:
-                Button("Next") {
-                    print("Help tapped!")
-                }
+                Button("Next") {}
             )
             .onAppear { self.isNavigationBarHidden = false }
-    }
-}
-
-// MARK: - Displaying TextFields view
-
-private extension PacientView {
-    func setStringTextField(_ bindingField: Binding<String>, _ field: String, _ placeholder: String) -> some View {
-        FloatingLabelTextField(bindingField, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
-            .isShowError(true)
-            .addValidations([
-                // .init(condition: field.isValid(.alphabetWithSpace), errorMessage: "В поле могут присутствовать только буквы и пробел"),
-                .init(condition: field.count >= 2, errorMessage: "В поле должно быть не менее 2-х символов")
-                ])
-            .floatingStyle(ThemeTextFieldStyle())
-            .autocapitalization(.words)
-            .frame(height: 60)
-            .padding(.horizontal, 10)
-            .padding(.vertical, -5)
-    }
-
-    func setIntTextField(_ bindingField: Binding<String>, _ field: String, _ placeholder: String) -> some View {
-        FloatingLabelTextField(bindingField, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
-            .isShowError(true)
-            .addValidations([
-                    .init(condition: field.isAgeValid(0, 150), errorMessage: "Следует ввести число в диапазоне (0, 150)")
-                ])
-            .floatingStyle(ThemeTextFieldStyle())
-            .frame(height: 60)
-            .textContentType(.oneTimeCode)
-            .keyboardType(.numberPad)
-            .modifier(ThemeTextField())
-            .padding(.horizontal, 10)
-            .padding(.vertical, -15)
-    }
-    
-    func setTelNumberTextField(_ bindingField: Binding<String>, _ field: String, _ placeholder: String) -> some View {
-        FloatingLabelTextField(bindingField, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
-            .isShowError(true)
-            .addValidations([
-                .init(condition: field.isValid(.mobileNumber), errorMessage: "Не корректный номер телефона"),
-                ])
-            .floatingStyle(ThemeTextFieldStyle())
-            .frame(height: 60)
-            .textContentType(.oneTimeCode)
-            .keyboardType(.numberPad)
-            .modifier(ThemeTextField())
-            .padding(.horizontal, 10)
-            .padding(.vertical, -15)
-    }
-}
-
-// MARK: - Create floating style
-
-struct ThemeTextFieldStyle: FloatingLabelTextFieldStyle {
-    func body(content: FloatingLabelTextField) -> FloatingLabelTextField {
-        content
-            .selectedTextColor(.black)
-            .selectedLineColor(.black)
-            .selectedTitleColor(.black)
-            .textColor(.black)
-            .titleColor(.black)
-            .lineColor(.black)
-            .errorColor(.init(UIColor.red))
-    }
-}
-
-//MARK: - ViewModifier
-
-struct ThemeTextField: ViewModifier {
-    func body(content: Content) -> some View {
-        content.frame(height: 70)
     }
 }
 

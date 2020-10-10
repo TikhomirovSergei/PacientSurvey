@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct ProblemModalCell: View {
+struct ProblemCell: View {
 
-    @Binding var problem: ProblemModal
+    @Binding var problem: ProblemModel
 
     var body: some View {
         HStack {
@@ -18,6 +18,7 @@ struct ProblemModalCell: View {
             Text(self.problem.title)
         }
             .padding(.leading, 10)
+            .padding(.vertical, 3)
             .onTapGesture {
                 self.problem.isSelected.toggle()
         }
