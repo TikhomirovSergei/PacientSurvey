@@ -9,9 +9,6 @@
 import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 
-let statusArray: [String] = ["Женат/замужем", "Не женат/не замужем", "Вдовец/вдова", "В разводе"]
-let resideArray: [String] = ["С женой/мужем", "Один", "С детьми", "Другое"]
-
 struct PacientView: View {
 
     @Binding var isNavigationBarHidden: Bool
@@ -20,13 +17,11 @@ struct PacientView: View {
     @State private var age: String = ""
     @State private var departament: String = ""
     @State private var room: String = ""
-    @State private var receiptDate: String = ""
-    @State private var dischargeDate: String = ""
+    @State private var receiptDate: Date = Date()
     @State private var status: String = statusArray[0]
     @State private var contactPerson: String = ""
     @State private var phoneNumber: String = ""
     @State private var doctor: String = ""
-    @State private var completionDate: String = ""
     @State private var resideStatus: String = resideArray[0]
     @State private var resideText: String = ""
     @State private var problems: [ProblemModal] = [
@@ -45,7 +40,7 @@ struct PacientView: View {
         ProblemModal(id: 12, title: "падения шаткости походки", isSelected: false),
         ProblemModal(id: 13, title: "другое", isSelected: false),
     ]
-    @State private var specificPromlem: String = ""
+    @State private var specificProblem: String = ""
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
 
@@ -57,34 +52,40 @@ struct PacientView: View {
                     self.setIntTextField($age, age, "Возраст")
                     self.setStringTextField($departament, departament, "Отделение")
                     self.setIntTextField($room, room, "№ палаты")
-                    self.setIntTextField($receiptDate, receiptDate, "Дата поступления")
-                    self.setIntTextField($dischargeDate, dischargeDate, "Дата выписки")
                     self.setStringTextField($contactPerson, contactPerson, "Контактное лицо")
-                    self.setStringTextField($phoneNumber, phoneNumber, "Номер телефона")
+                    self.setTelNumberTextField($phoneNumber, phoneNumber, "Номер телефона")
                     self.setStringTextField($doctor, doctor, "Ф.И.О, лечащего врача")
-                    self.setStringTextField($completionDate, completionDate, "Дата заполнения")
                 }
                 
                 VStack(alignment: .leading) {
-                    LineWithActionSheetView(
-                        title: "Семейный статус:",
-                        arrayList: statusArray,
-                        isShowActionsSheet: $showingStatusActionSheet,
-                        status: $status)
-                        
-                    LineWithActionSheetView(
-                        title: "С кем проживает:",
-                        arrayList: resideArray,
-                        isShowActionsSheet: $showingResideStatusActionSheet,
-                        status: $resideStatus)
+                    DatePicker("Дата поступления", selection: self.$receiptDate, displayedComponents: .date)
+                        .foregroundColor(.black)
+                        .padding(.top, 15)
+                        .padding(.leading, 12)
+                        .padding(.trailing, 12)
+                    
+                    Divider()
+                        .frame(height: 1)
+                        .background(Color.black)
+                        .padding(.horizontal, 10)
+                        .padding(.top, -7)
                 }
-                .padding(.vertical, 15)
-                .padding(.leading, -5)
-                .padding(.trailing, 15)
+                
+                LineWithActionSheetView(
+                    title: "Семейный статус",
+                    arrayList: statusArray,
+                    isShowActionsSheet: $showingStatusActionSheet,
+                    status: $status)
+                
+                LineWithActionSheetView(
+                    title: "С кем проживает",
+                    arrayList: resideArray,
+                    isShowActionsSheet: $showingResideStatusActionSheet,
+                    status: $resideStatus)
 
                 if (resideStatus == resideArray[3]) {
                     self.setStringTextField($resideText, resideText, "Введите жильцов")
-                        .padding(.top, -20)
+                        .padding(.top, -10)
                         .padding(.bottom, 10)
                 }
 
@@ -99,14 +100,25 @@ struct PacientView: View {
                 }
 
                 if (self.problems[13].isSelected) {
-                    self.setStringTextField($specificPromlem, specificPromlem, "Введите проблему")
+                    self.setStringTextField($specificProblem, specificProblem, "Введите проблему")
                 }
 
                 Spacer()
             }
         }
+            .gesture(
+                TapGesture()
+                    .onEnded { _ in
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+            )
             .navigationBarTitle(
-                Text("Общая информация о пациенте").font(.title), displayMode: .inline)
+                Text("Общая информация о пациенте"), displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button("Next") {
+                    print("Help tapped!")
+                }
+            )
             .onAppear { self.isNavigationBarHidden = false }
     }
 }
@@ -122,6 +134,7 @@ private extension PacientView {
                 .init(condition: field.count >= 2, errorMessage: "В поле должно быть не менее 2-х символов")
                 ])
             .floatingStyle(ThemeTextFieldStyle())
+            .autocapitalization(.words)
             .frame(height: 60)
             .padding(.horizontal, 10)
             .padding(.vertical, -5)
@@ -132,6 +145,21 @@ private extension PacientView {
             .isShowError(true)
             .addValidations([
                     .init(condition: field.isAgeValid(0, 150), errorMessage: "Следует ввести число в диапазоне (0, 150)")
+                ])
+            .floatingStyle(ThemeTextFieldStyle())
+            .frame(height: 60)
+            .textContentType(.oneTimeCode)
+            .keyboardType(.numberPad)
+            .modifier(ThemeTextField())
+            .padding(.horizontal, 10)
+            .padding(.vertical, -15)
+    }
+    
+    func setTelNumberTextField(_ bindingField: Binding<String>, _ field: String, _ placeholder: String) -> some View {
+        FloatingLabelTextField(bindingField, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
+            .isShowError(true)
+            .addValidations([
+                .init(condition: field.isValid(.mobileNumber), errorMessage: "Не корректный номер телефона"),
                 ])
             .floatingStyle(ThemeTextFieldStyle())
             .frame(height: 60)
