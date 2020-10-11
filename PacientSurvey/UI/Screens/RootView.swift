@@ -10,21 +10,17 @@ import SwiftUI
 
 struct RootView: View {
 
-    @State var isNavigationBarHidden: Bool = true
+    @State private var willMoveToNextScreen = false
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                GeometryReader { geometry in
-                    self.headerView(geometry)
-                    self.bodyView(geometry)
-                    self.footerView(geometry)
-                }
+        VStack(alignment: .leading) {
+            GeometryReader { geometry in
+                self.headerView(geometry)
+                self.bodyView(geometry)
+                self.footerView(geometry)
             }
-                .navigationBarTitle("")
-                .navigationBarHidden(self.isNavigationBarHidden)
-                .onAppear { self.isNavigationBarHidden = true }
         }
+        .navigate(to: PacientView(), when: $willMoveToNextScreen)
     }
 }
 
@@ -45,7 +41,7 @@ private extension RootView {
     }
 
     func bodyView(_ geometry: GeometryProxy) -> some View {
-        HStack() {
+        HStack {
             VStack {
                 Text("Welcome to the program for")
                     .font(.system(size: 20))
@@ -57,7 +53,7 @@ private extension RootView {
                     .frame(width: geometry.size.width)
                     .multilineTextAlignment(.center)
 
-                NavigationLink(destination: PacientView(isNavigationBarHidden: self.$isNavigationBarHidden), label: {
+                NavigationLink(destination: PacientView(), label: {
                     Text("Start inspection")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
@@ -81,11 +77,12 @@ private extension RootView {
                     .cornerRadius(25)
             }
         }
-            .frame(width: geometry.size.width, height: geometry.size.height - 50)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .padding(.bottom, 50)
     }
 
     func footerView(_ geometry: GeometryProxy) -> some View {
-        HStack() {
+        HStack {
             Spacer()
             Button(action: {
                 print("test")
@@ -103,6 +100,22 @@ private extension RootView {
         }
             .offset(x: 0, y: geometry.size.height - 75)
             .padding().frame(height: 50)
+    }
+}
+
+extension View {
+    func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
+        NavigationView {
+            ZStack {
+                self.navigationBarTitle("").navigationBarHidden(true)
+                NavigationLink(
+                    destination: view.navigationBarTitle("").navigationBarHidden(true),
+                    isActive: binding
+                ) {
+                    EmptyView()
+                }
+            }
+        }
     }
 }
 

@@ -17,7 +17,7 @@ struct NumberTextFieldView: View {
     @Binding var field: String
     
     var body: some View {
-        FloatingLabelTextField($field, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
+        FloatingLabelTextField($field, placeholder: placeholder, editingChanged: { (_) in }) { }
             .isShowError(true)
             .addValidations([
                 isPhoneNumber
@@ -34,8 +34,7 @@ struct NumberTextFieldView: View {
     }
 }
 
-
-//MARK: - ViewModifier
+// MARK: - ViewModifier
 
 struct ThemeTextField: ViewModifier {
     func body(content: Content) -> some View {

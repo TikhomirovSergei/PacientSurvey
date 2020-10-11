@@ -22,7 +22,7 @@ struct LineWithActionSheetView: View {
     var body: some View {
         VStack(alignment: .leading) {
             GeometryReader { geometry in
-                HStack() {
+                HStack {
                     Text(title)
                         .actionSheet(isPresented: $isShowActionsSheet) {
                             ActionSheet(title: Text(title), buttons: arrayList.map { item in

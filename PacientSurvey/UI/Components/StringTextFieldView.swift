@@ -16,7 +16,7 @@ struct StringTextFieldView: View {
     @Binding var field: String
     
     var body: some View {
-        FloatingLabelTextField($field, placeholder: placeholder, editingChanged: { (isChanged) in }) { }
+        FloatingLabelTextField($field, placeholder: placeholder, editingChanged: { (_) in }) { }
             .isShowError(true)
             .addValidations([
                 // .init(condition: field.isValid(.alphabetWithSpace), errorMessage: "В поле могут присутствовать только буквы и пробел"),

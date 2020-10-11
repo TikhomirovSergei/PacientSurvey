@@ -21,6 +21,7 @@
 		7CBDAE0B2532368F00246A2F /* StringTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE0A2532368F00246A2F /* StringTextFieldView.swift */; };
 		7CBDAE13253244B600246A2F /* NumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE12253244B600246A2F /* NumberTextFieldView.swift */; };
 		7CBDAE1E25324CDB00246A2F /* LineWithDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */; };
+		7CBDAE2325324F4000246A2F /* BalanceTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE2225324F4000246A2F /* BalanceTestView.swift */; };
 		7CE688E6252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */; };
 		7CE688EE252F50AB001C2C27 /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688ED252F50AB001C2C27 /* ProblemModel.swift */; };
 		7CE688F2252F530C001C2C27 /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688F1252F530C001C2C27 /* ProblemCell.swift */; };
@@ -67,6 +68,7 @@
 		7CBDAE0A2532368F00246A2F /* StringTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTextFieldView.swift; sourceTree = "<group>"; };
 		7CBDAE12253244B600246A2F /* NumberTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextFieldView.swift; sourceTree = "<group>"; };
 		7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineWithDatePicker.swift; sourceTree = "<group>"; };
+		7CBDAE2225324F4000246A2F /* BalanceTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTestView.swift; sourceTree = "<group>"; };
 		7CE688ED252F50AB001C2C27 /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
 		7CE688F1252F530C001C2C27 /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 			children = (
 				7CAF492124E523D300772BCD /* RootView.swift */,
 				7C603CAA252EF6FF002FA730 /* PacientView.swift */,
+				7CBDAE2225324F4000246A2F /* BalanceTestView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				7CAF491624E523D300772BCD /* Sources */,
 				7CAF491724E523D300772BCD /* Frameworks */,
 				7CAF491824E523D300772BCD /* Resources */,
+				7CBDAE27253264B100246A2F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -379,6 +383,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7CBDAE27253264B100246A2F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: Swiftlint not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7CAF491624E523D300772BCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -392,6 +416,7 @@
 				7CAF492024E523D300772BCD /* SceneDelegate.swift in Sources */,
 				7CAF492224E523D300772BCD /* RootView.swift in Sources */,
 				7CBDAE1E25324CDB00246A2F /* LineWithDatePicker.swift in Sources */,
+				7CBDAE2325324F4000246A2F /* BalanceTestView.swift in Sources */,
 				7CBDAE13253244B600246A2F /* NumberTextFieldView.swift in Sources */,
 				7C603CAB252EF6FF002FA730 /* PacientView.swift in Sources */,
 			);

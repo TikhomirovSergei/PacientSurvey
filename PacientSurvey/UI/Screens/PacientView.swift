@@ -10,9 +10,6 @@ import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 
 struct PacientView: View {
-
-    @Binding var isNavigationBarHidden: Bool
-    
     @State var username: String = ""
     @State var age: String = ""
     @State var departament: String = ""
@@ -38,11 +35,12 @@ struct PacientView: View {
         ProblemModel(id: 10, title: "боли в суставах", isSelected: false),
         ProblemModel(id: 11, title: "головная боль", isSelected: false),
         ProblemModel(id: 12, title: "падения шаткости походки", isSelected: false),
-        ProblemModel(id: 13, title: "другое", isSelected: false),
+        ProblemModel(id: 13, title: "другое", isSelected: false)
     ]
     @State var specificProblem: String = ""
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
+    @State private var showSheetView = false
 
     var body: some View {
         ScrollView {
@@ -56,22 +54,22 @@ struct PacientView: View {
                     NumberTextFieldView(placeholder: "Номер телефона", isPhoneNumber: true, field: $phoneNumber)
                     StringTextFieldView(placeholder: "Ф.И.О. лечащего врача", field: $doctorName)
                 }
-                
+
                 LineWithDatePicker(title: "Дата поступления", date: $receiptDate)
-                
+
                 LineWithActionSheetView(
                     title: "Семейный статус",
                     arrayList: statusArray,
                     isShowActionsSheet: $showingStatusActionSheet,
                     status: $status)
-                
+
                 LineWithActionSheetView(
                     title: "С кем проживает",
                     arrayList: resideArray,
                     isShowActionsSheet: $showingResideStatusActionSheet,
                     status: $resideStatus)
 
-                if (resideStatus == resideArray.last) {
+                if resideStatus == resideArray.last {
                     StringTextFieldView(placeholder: "Введите жильцов", field: $resideText)
                         .padding(.top, -10)
                         .padding(.bottom, 10)
@@ -86,24 +84,35 @@ struct PacientView: View {
                     }.frame(height: 20)
                 }
 
-                if (self.problems.last?.isSelected == true) {
+                if self.problems.last?.isSelected == true {
                     StringTextFieldView(placeholder: "Введите проблему", field: $specificProblem)
                 }
 
                 Spacer()
             }
         }
-            .gesture(
-                TapGesture().onEnded { _ in
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        .navigate(to: BalanceTestView(), when: $showSheetView)
+        .gesture(
+            TapGesture().onEnded { _ in
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+        )
+        .navigationBarTitle(Text("Общая информация о пациенте"), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading:
+                Button(action: {
+                    self.showSheetView.toggle()
+                }) {
+                    Image(systemName: "chevron.left").font(Font.system(.title))
+                },
+            trailing:
+                Button(action: {
+                    self.showSheetView.toggle()
+                }) {
+                    Image(systemName: "chevron.right").font(Font.system(.title))
                 }
-            )
-            .navigationBarTitle(
-                Text("Общая информация о пациенте"), displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button("Next") {}
-            )
-            .onAppear { self.isNavigationBarHidden = false }
+        )
     }
 }
 
@@ -116,11 +125,3 @@ public extension String {
         return true
     }
 }
-
-#if DEBUG
-    struct PacientView_Previews: PreviewProvider {
-        static var previews: some View {
-            PacientView(isNavigationBarHidden: .constant(true))
-        }
-    }
-#endif
