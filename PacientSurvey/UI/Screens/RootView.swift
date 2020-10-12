@@ -10,17 +10,26 @@ import SwiftUI
 
 struct RootView: View {
 
-    @State private var willMoveToNextScreen = false
+    @EnvironmentObject var appState: AppState
 
+    @State private var willMoveToPacientViewScreen = false
+    @State var selection: Int? = 1
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            GeometryReader { geometry in
-                self.headerView(geometry)
-                self.bodyView(geometry)
-                self.footerView(geometry)
+        NavigationView {
+            VStack(alignment: .leading) {
+                GeometryReader { geometry in
+                    self.headerView(geometry)
+                    self.bodyView(geometry)
+                    self.footerView(geometry)
+                }
+                NavigationLink(destination:
+                    PacientView(),
+                    isActive: $willMoveToPacientViewScreen
+                ) { }
             }
+            .navigationBarHidden(true)
         }
-        .navigate(to: PacientView(), when: $willMoveToNextScreen)
     }
 }
 
@@ -53,16 +62,18 @@ private extension RootView {
                     .frame(width: geometry.size.width)
                     .multilineTextAlignment(.center)
 
-                NavigationLink(destination: PacientView(), label: {
+                Button(action: {
+                    self.willMoveToPacientViewScreen = true
+                }, label: {
                     Text("Start inspection")
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
+                    .padding()
                     .frame(width: 300, height: 50)
                     .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                     .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
                     .cornerRadius(25)
-                    .padding()
 
                 Button(action: {
                     print("test")
@@ -71,6 +82,7 @@ private extension RootView {
                         .font(.system(size: 18))
                         .fontWeight(.bold)
                 })
+                    .padding()
                     .frame(width: 300, height: 50)
                     .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                     .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
@@ -102,27 +114,3 @@ private extension RootView {
             .padding().frame(height: 50)
     }
 }
-
-extension View {
-    func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
-        NavigationView {
-            ZStack {
-                self.navigationBarTitle("").navigationBarHidden(true)
-                NavigationLink(
-                    destination: view.navigationBarTitle("").navigationBarHidden(true),
-                    isActive: binding
-                ) {
-                    EmptyView()
-                }
-            }
-        }
-    }
-}
-
-#if DEBUG
-    struct RootView_Previews: PreviewProvider {
-        static var previews: some View {
-            RootView()
-        }
-    }
-#endif

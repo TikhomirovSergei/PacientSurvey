@@ -25,6 +25,11 @@
 		7CE688E6252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */; };
 		7CE688EE252F50AB001C2C27 /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688ED252F50AB001C2C27 /* ProblemModel.swift */; };
 		7CE688F2252F530C001C2C27 /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688F1252F530C001C2C27 /* ProblemCell.swift */; };
+		7CF23130253454EB00D4DD98 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2312F253454EB00D4DD98 /* AppState.swift */; };
+		7CF231352534567100D4DD98 /* PacientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF231342534567100D4DD98 /* PacientModel.swift */; };
+		7CF2313A25345C0900D4DD98 /* DBRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2313925345C0900D4DD98 /* DBRepository.swift */; };
+		7CF2313F25347A2700D4DD98 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2313E25347A2700D4DD98 /* PickerView.swift */; };
+		7CF23144253489BF00D4DD98 /* BalanceTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF23143253489BF00D4DD98 /* BalanceTestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,11 @@
 		7CBDAE2225324F4000246A2F /* BalanceTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTestView.swift; sourceTree = "<group>"; };
 		7CE688ED252F50AB001C2C27 /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
 		7CE688F1252F530C001C2C27 /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
+		7CF2312F253454EB00D4DD98 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7CF231342534567100D4DD98 /* PacientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacientModel.swift; sourceTree = "<group>"; };
+		7CF2313925345C0900D4DD98 /* DBRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepository.swift; sourceTree = "<group>"; };
+		7CF2313E25347A2700D4DD98 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		7CF23143253489BF00D4DD98 /* BalanceTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +156,7 @@
 		7C603C9B252CB71B002FA730 /* Injected */ = {
 			isa = PBXGroup;
 			children = (
+				7CF2312F253454EB00D4DD98 /* AppState.swift */,
 			);
 			path = Injected;
 			sourceTree = "<group>";
@@ -153,6 +164,7 @@
 		7C603C9C252CB739002FA730 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				7CF2313925345C0900D4DD98 /* DBRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -168,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				7CE688ED252F50AB001C2C27 /* ProblemModel.swift */,
+				7CF231342534567100D4DD98 /* PacientModel.swift */,
+				7CF23143253489BF00D4DD98 /* BalanceTestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,6 +258,7 @@
 				7CBDAE0A2532368F00246A2F /* StringTextFieldView.swift */,
 				7CBDAE12253244B600246A2F /* NumberTextFieldView.swift */,
 				7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */,
+				7CF2313E25347A2700D4DD98 /* PickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -411,12 +426,17 @@
 				7CBDAE0B2532368F00246A2F /* StringTextFieldView.swift in Sources */,
 				7CE688F2252F530C001C2C27 /* ProblemCell.swift in Sources */,
 				7CBDADEA2530FC9E00246A2F /* LineWithActionSheetView.swift in Sources */,
+				7CF23130253454EB00D4DD98 /* AppState.swift in Sources */,
 				7CE688EE252F50AB001C2C27 /* ProblemModel.swift in Sources */,
 				7CAF491E24E523D300772BCD /* AppDelegate.swift in Sources */,
 				7CAF492024E523D300772BCD /* SceneDelegate.swift in Sources */,
 				7CAF492224E523D300772BCD /* RootView.swift in Sources */,
+				7CF23144253489BF00D4DD98 /* BalanceTestModel.swift in Sources */,
+				7CF2313F25347A2700D4DD98 /* PickerView.swift in Sources */,
 				7CBDAE1E25324CDB00246A2F /* LineWithDatePicker.swift in Sources */,
 				7CBDAE2325324F4000246A2F /* BalanceTestView.swift in Sources */,
+				7CF231352534567100D4DD98 /* PacientModel.swift in Sources */,
+				7CF2313A25345C0900D4DD98 /* DBRepository.swift in Sources */,
 				7CBDAE13253244B600246A2F /* NumberTextFieldView.swift in Sources */,
 				7C603CAB252EF6FF002FA730 /* PacientView.swift in Sources */,
 			);

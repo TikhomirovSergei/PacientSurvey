@@ -10,67 +10,42 @@ import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 
 struct PacientView: View {
-    @State var username: String = ""
-    @State var age: String = ""
-    @State var departament: String = ""
-    @State var room: String = ""
-    @State var contactPerson: String = ""
-    @State var phoneNumber: String = ""
-    @State var doctorName: String = ""
-    @State var receiptDate: Date = Date()
-    @State var status: String = statusArray[0]
-    @State var resideStatus: String = resideArray[0]
-    @State var resideText: String = ""
-    @State private var problems: [ProblemModel] = [
-        ProblemModel(id: 0, title: "общая слабость", isSelected: false),
-        ProblemModel(id: 1, title: "утомляемость, снижение мобильности", isSelected: false),
-        ProblemModel(id: 2, title: "снижение слуха и зрения", isSelected: false),
-        ProblemModel(id: 3, title: "снижение памяти на текущие события", isSelected: false),
-        ProblemModel(id: 4, title: "головокружение", isSelected: false),
-        ProblemModel(id: 5, title: "запоры", isSelected: false),
-        ProblemModel(id: 6, title: "снижение аппетита", isSelected: false),
-        ProblemModel(id: 7, title: "снижение эмоциональной стабильности", isSelected: false),
-        ProblemModel(id: 8, title: "плаксивость", isSelected: false),
-        ProblemModel(id: 9, title: "боли в пояснично-крестцовом отделе", isSelected: false),
-        ProblemModel(id: 10, title: "боли в суставах", isSelected: false),
-        ProblemModel(id: 11, title: "головная боль", isSelected: false),
-        ProblemModel(id: 12, title: "падения шаткости походки", isSelected: false),
-        ProblemModel(id: 13, title: "другое", isSelected: false)
-    ]
-    @State var specificProblem: String = ""
+    
+    @EnvironmentObject var appState: AppState
+
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
-    @State private var showSheetView = false
+    @State private var willMoveToBalanceTextViewScreen = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    StringTextFieldView(placeholder: "Ф.И.О. пациента", field: $username)
-                    NumberTextFieldView(placeholder: "Возраст", isPhoneNumber: false, field: $age)
-                    StringTextFieldView(placeholder: "Отделение", field: $departament)
-                    NumberTextFieldView(placeholder: "№ палаты", isPhoneNumber: false, field: $room)
-                    StringTextFieldView(placeholder: "Контактное лицо", field: $contactPerson)
-                    NumberTextFieldView(placeholder: "Номер телефона", isPhoneNumber: true, field: $phoneNumber)
-                    StringTextFieldView(placeholder: "Ф.И.О. лечащего врача", field: $doctorName)
+                    StringTextFieldView(placeholder: "Ф.И.О. пациента", field: $appState.userData.pacient.username)
+                    NumberTextFieldView(placeholder: "Возраст", isPhoneNumber: false, field: $appState.userData.pacient.age)
+                    StringTextFieldView(placeholder: "Отделение", field: $appState.userData.pacient.departament)
+                    NumberTextFieldView(placeholder: "№ палаты", isPhoneNumber: false, field: $appState.userData.pacient.room)
+                    StringTextFieldView(placeholder: "Контактное лицо", field: $appState.userData.pacient.contactPerson)
+                    NumberTextFieldView(placeholder: "Номер телефона", isPhoneNumber: true, field: $appState.userData.pacient.phoneNumber)
+                    StringTextFieldView(placeholder: "Ф.И.О. лечащего врача", field: $appState.userData.pacient.doctorName)
                 }
 
-                LineWithDatePicker(title: "Дата поступления", date: $receiptDate)
+                LineWithDatePicker(title: "Дата поступления", date: $appState.userData.pacient.receiptDate)
 
                 LineWithActionSheetView(
                     title: "Семейный статус",
                     arrayList: statusArray,
                     isShowActionsSheet: $showingStatusActionSheet,
-                    status: $status)
+                    status: $appState.userData.pacient.status)
 
                 LineWithActionSheetView(
                     title: "С кем проживает",
                     arrayList: resideArray,
                     isShowActionsSheet: $showingResideStatusActionSheet,
-                    status: $resideStatus)
+                    status: $appState.userData.pacient.resideStatus)
 
-                if resideStatus == resideArray.last {
-                    StringTextFieldView(placeholder: "Введите жильцов", field: $resideText)
+                if appState.userData.pacient.resideStatus == resideArray.last {
+                    StringTextFieldView(placeholder: "Введите жильцов", field: $appState.userData.pacient.resideText)
                         .padding(.top, -10)
                         .padding(.bottom, 10)
                 }
@@ -79,40 +54,36 @@ struct PacientView: View {
                     .fontWeight(.bold)
                     .padding(.leading, 10)
                 VStack(alignment: .leading) {
-                    ForEach(problems.indices, id: \.self) { index in
-                        ProblemCell(problem: self.$problems[index])
+                    ForEach(appState.userData.pacient.problems.indices, id: \.self) { index in
+                        ProblemCell(problem: $appState.userData.pacient.problems[index])
                     }.frame(height: 20)
                 }
 
-                if self.problems.last?.isSelected == true {
-                    StringTextFieldView(placeholder: "Введите проблему", field: $specificProblem)
+                if appState.userData.pacient.problems.last?.isSelected == true {
+                    StringTextFieldView(placeholder: "Введите проблему", field: $appState.userData.pacient.specificProblem)
                 }
 
                 Spacer()
             }
         }
-        .navigate(to: BalanceTestView(), when: $showSheetView)
         .gesture(
             TapGesture().onEnded { _ in
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         )
         .navigationBarTitle(Text("Общая информация о пациенте"), displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
         .navigationBarItems(
-            leading:
-                Button(action: {
-                    self.showSheetView.toggle()
-                }) {
-                    Image(systemName: "chevron.left").font(Font.system(.title))
-                },
             trailing:
                 Button(action: {
-                    self.showSheetView.toggle()
+                    self.willMoveToBalanceTextViewScreen.toggle()
                 }) {
-                    Image(systemName: "chevron.right").font(Font.system(.title))
+                    Image(systemName: "chevron.right").imageScale(.large)
                 }
-        )
+        )        
+        NavigationLink(destination:
+            BalanceTestView(),
+            isActive: $willMoveToBalanceTextViewScreen
+        ) { }
     }
 }
 

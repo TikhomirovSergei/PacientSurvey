@@ -8,9 +8,6 @@
 
 import SwiftUI
 
-let statusArray: [String] = ["Женат/замужем", "Не женат/не замужем", "Вдовец/вдова", "В разводе"]
-let resideArray: [String] = ["С женой/мужем", "Один", "С детьми", "Другое"]
-
 struct LineWithActionSheetView: View {
     
     var title: String
