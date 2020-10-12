@@ -16,7 +16,7 @@ struct PickerView: View {
     var array: [String]
     
     var body: some View {
-        Picker(selection: $currentIndex, label: Text(text)) {
+        Picker(selection: $currentIndex, label: Text(text).lineLimit(2)) {
             ForEach(0 ..< array.count) {
                 Text(self.array[$0])
             }

@@ -16,11 +16,15 @@ class AppState: ObservableObject, Equatable {
 extension AppState {
     class UserData: Equatable, Codable {
         var pacient = PacientModel()
-        var balanceTest = BalanceTestModel()
+        var anthropometry = AnthropometryModel()
+        var functionalTest = FunctionalTestModel()
+        var screeningTest = ScreeningTestModel()
 
         static func == (lhs: AppState.UserData, rhs: AppState.UserData) -> Bool {
             return lhs.pacient == rhs.pacient &&
-                lhs.balanceTest == rhs.balanceTest
+                lhs.anthropometry == rhs.anthropometry &&
+                lhs.functionalTest == rhs.functionalTest &&
+                lhs.screeningTest == rhs.screeningTest
         }
     }
 }

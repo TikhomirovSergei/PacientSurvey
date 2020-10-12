@@ -15,7 +15,7 @@ struct PacientView: View {
 
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
-    @State private var willMoveToBalanceTextViewScreen = false
+    @State private var willMoveToBalanceTestViewScreen = false
 
     var body: some View {
         ScrollView {
@@ -73,17 +73,10 @@ struct PacientView: View {
         )
         .navigationBarTitle(Text("Общая информация о пациенте"), displayMode: .inline)
         .navigationBarItems(
-            trailing:
-                Button(action: {
-                    self.willMoveToBalanceTextViewScreen.toggle()
-                }) {
-                    Image(systemName: "chevron.right").imageScale(.large)
-                }
+            trailing: HeaderNextButtonView(willMoveToNextScreen: $willMoveToBalanceTestViewScreen)
         )        
-        NavigationLink(destination:
-            BalanceTestView(),
-            isActive: $willMoveToBalanceTextViewScreen
-        ) { }
+        NavigationLink(destination: AnthropometryView(),
+                       isActive: $willMoveToBalanceTestViewScreen) { }
     }
 }
 
