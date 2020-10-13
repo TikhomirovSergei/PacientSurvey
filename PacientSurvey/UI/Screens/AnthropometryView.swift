@@ -13,6 +13,8 @@ struct AnthropometryView: View {
     @EnvironmentObject var appState: AppState
     
     @State private var willMoveToFunctionalTestViewScreen = false
+    @State private var message = ""
+    @State private var showingAlert = false
     
     init() {
         UITableView.appearance().contentInset.top = -35
@@ -46,10 +48,19 @@ struct AnthropometryView: View {
                         text: "Объем плеча, см",
                         array: volumeArray)
         }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text(message))
+        }
         .padding(.horizontal, -15)
         .navigationBarTitle(Text("Антропометрия"), displayMode: .inline)
         .navigationBarItems(
-            trailing: HeaderNextButtonView(willMoveToNextScreen: $willMoveToFunctionalTestViewScreen)
+            trailing:
+                HeaderNextButtonView(action: {
+                    if self.validateFields() {
+                        appState.state.current.anthropometry.isSaved = true
+                        self.willMoveToFunctionalTestViewScreen.toggle()
+                    }
+                })
         )
         NavigationLink(destination: FunctionalTestView(),
                        isActive: $willMoveToFunctionalTestViewScreen) { }
@@ -69,5 +80,45 @@ struct AnthropometryView: View {
             
         appState.state.current.anthropometry.BMI = String(bmi)
         return String(bmi)
+    }
+    
+    private func validateFields() -> Bool {
+        guard appState.state.current.anthropometry.heightIndex > -1 else {
+            message = "Рост пациента не введен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.anthropometry.growthInYouth > -1 else {
+            message = "Рост в молодости пациента не введен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.anthropometry.weightIndex > -1 else {
+            message = "Вес пациента не введен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.anthropometry.waistCircumference > -1 else {
+            message = "Окружность талии пациента не введена"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.anthropometry.shinVolume > -1 else {
+            message = "Объем голени пациента не введена"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.anthropometry.shoulderVolume > -1 else {
+            message = "Объем плеча пациента не введена"
+            showingAlert.toggle()
+            return false
+        }
+        
+        return true
     }
 }

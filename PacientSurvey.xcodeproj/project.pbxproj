@@ -38,6 +38,7 @@
 		7CF2316E2534E97B00D4DD98 /* FunctionalTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */; };
 		7CF231762535C44000D4DD98 /* AnswerBartelIndexTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */; };
 		7CF2317B2535CD9D00D4DD98 /* BartelIndexTestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2317A2535CD9D00D4DD98 /* BartelIndexTestItemView.swift */; };
+		7CFCAA1F25363A7300189582 /* BartelIndexTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFCAA1E25363A7300189582 /* BartelIndexTestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalTestModel.swift; sourceTree = "<group>"; };
 		7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerBartelIndexTestModel.swift; sourceTree = "<group>"; };
 		7CF2317A2535CD9D00D4DD98 /* BartelIndexTestItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartelIndexTestItemView.swift; sourceTree = "<group>"; };
+		7CFCAA1E25363A7300189582 /* BartelIndexTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartelIndexTestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */,
 				7CF2315A2534E6C400D4DD98 /* ScreeningTestModel.swift */,
 				7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */,
+				7CFCAA1E25363A7300189582 /* BartelIndexTestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				7CF23144253489BF00D4DD98 /* AnthropometryModel.swift in Sources */,
 				7CF2313F25347A2700D4DD98 /* PickerView.swift in Sources */,
 				7CF231632534E8A800D4DD98 /* FunctionalTestView.swift in Sources */,
+				7CFCAA1F25363A7300189582 /* BartelIndexTestModel.swift in Sources */,
 				7CBDAE1E25324CDB00246A2F /* LineWithDatePicker.swift in Sources */,
 				7CBDAE2325324F4000246A2F /* AnthropometryView.swift in Sources */,
 				7CF2316E2534E97B00D4DD98 /* FunctionalTestModel.swift in Sources */,

@@ -10,12 +10,10 @@ import SwiftUI
 
 struct HeaderNextButtonView: View {
 
-    @Binding var willMoveToNextScreen: Bool
+    var action: () -> Void
 
     var body: some View {
-        Button(action: {
-            self.willMoveToNextScreen.toggle()
-        }) {
+        Button(action: action) {
             Image(systemName: "chevron.right").imageScale(.large)
         }
         .frame(width: 44, height: 44, alignment: .trailing)

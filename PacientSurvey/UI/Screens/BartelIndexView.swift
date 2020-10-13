@@ -12,16 +12,9 @@ struct BartelIndexView: View {
     
     @EnvironmentObject var appState: AppState
     
-    @State var eatingTypesSelectedIndex = -1
-    @State var hygieneSelectedIndex = -1
-    @State var dressingSelectedIndex = -1
-    @State var takingBathSelectedIndex = -1
-    @State var urinationControlSelectedIndex = -1
-    @State var bowelControlSelectedIndex = -1
-    @State var goingToToiletSelectedIndex = -1
-    @State var gettingOutOfBedSelectedIndex = -1
-    @State var movementSelectedIndex = -1
-    @State var climbingTheStairsSelectedIndex = -1
+    @State private var willMoveToRootViewScreen = false
+    @State private var message = ""
+    @State private var showingAlert = false
 
     init() {
         UITableView.appearance().contentInset.top = 0
@@ -31,36 +24,114 @@ struct BartelIndexView: View {
         Form {
             BartelIndexTestItemView(title: "Прием пищи",
                                     answerlist: eatingTypes,
-                                    selectedIndex: $eatingTypesSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.eatingTypesSelectedIndex)
             BartelIndexTestItemView(title: "Личная гигиена (умывание, чистка зубов, бритье)",
                                     answerlist: hygieneTypes,
-                                    selectedIndex: $hygieneSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.hygieneSelectedIndex)
             BartelIndexTestItemView(title: "Одевание",
                                     answerlist: dressingTypes,
-                                    selectedIndex: $dressingSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.dressingSelectedIndex)
             BartelIndexTestItemView(title: "Прием ванны",
                                     answerlist: takingBathTypes,
-                                    selectedIndex: $takingBathSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.takingBathSelectedIndex)
             BartelIndexTestItemView(title: "Контроль мочеиспускания",
                                     answerlist: urinationControlTypes,
-                                    selectedIndex: $urinationControlSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.urinationControlSelectedIndex)
             BartelIndexTestItemView(title: "Контроль дефекации",
                                     answerlist: bowelControlTypes,
-                                    selectedIndex: $bowelControlSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.bowelControlSelectedIndex)
             BartelIndexTestItemView(title: "Посещение туалета",
                                     answerlist: goingToToiletTypes,
-                                    selectedIndex: $goingToToiletSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.goingToToiletSelectedIndex)
             BartelIndexTestItemView(title: "Вставание с постели",
                                     answerlist: gettingOutOfBedTypes,
-                                    selectedIndex: $gettingOutOfBedSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.gettingOutOfBedSelectedIndex)
             BartelIndexTestItemView(title: "Передвижение (кровать, стул)",
                                     answerlist: movementTypes,
-                                    selectedIndex: $movementSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.movementSelectedIndex)
             BartelIndexTestItemView(title: "Подъем по лестнице",
                                     answerlist: climbingTheStairsTypes,
-                                    selectedIndex: $climbingTheStairsSelectedIndex)
+                                    selectedIndex: $appState.state.current.bartelIndexTest.climbingTheStairsSelectedIndex)
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text(message))
         }
         .padding(.horizontal, -15)
         .navigationBarTitle(Text("Индекс Бартел"), displayMode: .inline)
+        .navigationBarItems(
+            trailing:
+                HeaderNextButtonView(action: {
+                    if self.validateFields() {
+                        appState.state.current.bartelIndexTest.isSaved = true
+                        self.willMoveToRootViewScreen.toggle()
+                    }
+                })
+        )
+        NavigationLink(destination: RootView(),
+                       isActive: $willMoveToRootViewScreen) { }
+    }
+    
+    private func validateFields() -> Bool {
+        guard appState.state.current.bartelIndexTest.eatingTypesSelectedIndex > -1 else {
+            message = "Пункт \"Прием пищи\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.hygieneSelectedIndex > -1 else {
+            message = "Пункт \"Личная гигиена (умывание, чистка зубов, бритье)\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.dressingSelectedIndex > -1 else {
+            message = "Пункт \"Одевание\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.takingBathSelectedIndex > -1 else {
+            message = "Пункт \"Прием ванны\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.urinationControlSelectedIndex > -1 else {
+            message = "Пункт \"Контроль мочеиспускания\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.bowelControlSelectedIndex > -1 else {
+            message = "Пункт \"Контроль дефекации\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.goingToToiletSelectedIndex > -1 else {
+            message = "Пункт \"Посещение туалета\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.gettingOutOfBedSelectedIndex > -1 else {
+            message = "Пункт \"Вставание с постели\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.movementSelectedIndex > -1 else {
+            message = "Пункт \"Передвижение (кровать, стул)\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.bartelIndexTest.climbingTheStairsSelectedIndex > -1 else {
+            message = "Пункт \"Подъем по лестнице\" не заполнен"
+            showingAlert.toggle()
+            return false
+        }
+        
+        return true
     }
 }

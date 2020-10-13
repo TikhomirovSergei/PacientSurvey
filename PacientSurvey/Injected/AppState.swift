@@ -26,12 +26,14 @@ extension AppState {
         var anthropometry = AnthropometryModel()
         var functionalTest = FunctionalTestModel()
         var screeningTest = ScreeningTestModel()
+        var bartelIndexTest = BartelIndexTestModel()
         
         func clear() {
             self.pacient = PacientModel()
             self.anthropometry = AnthropometryModel()
             self.functionalTest = FunctionalTestModel()
             self.screeningTest = ScreeningTestModel()
+            self.bartelIndexTest = BartelIndexTestModel()
         }
     }
 }

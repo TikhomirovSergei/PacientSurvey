@@ -15,7 +15,9 @@ struct PacientView: View {
 
     @State private var showingStatusActionSheet = false
     @State private var showingResideStatusActionSheet = false
-    @State private var willMoveToBalanceTestViewScreen = false
+    @State private var willMoveToBalanceTestViewScreen = false    
+    @State private var message = ""
+    @State private var showingAlert = false
 
     var body: some View {
         ScrollView {
@@ -66,6 +68,9 @@ struct PacientView: View {
                 Spacer()
             }
         }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text(message))
+        }
         .gesture(
             TapGesture().onEnded { _ in
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -73,10 +78,76 @@ struct PacientView: View {
         )
         .navigationBarTitle(Text("Общая информация о пациенте"), displayMode: .inline)
         .navigationBarItems(
-            trailing: HeaderNextButtonView(willMoveToNextScreen: $willMoveToBalanceTestViewScreen)
-        )        
+            trailing:
+                HeaderNextButtonView(action: {
+                    if self.validateFields() {
+                        appState.state.current.pacient.isSaved = true
+                        self.willMoveToBalanceTestViewScreen.toggle()
+                    }
+                })
+        )
         NavigationLink(destination: AnthropometryView(),
                        isActive: $willMoveToBalanceTestViewScreen) { }
+    }
+    
+    private func validateFields() -> Bool {
+        guard appState.state.current.pacient.username.count > 2 else {
+            message = "Ф.И.О. пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard (Int(appState.state.current.pacient.age) ?? -1) > 0 else {
+            message = "Возраст пациента заполнен некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.pacient.departament.count > 2 else {
+            message = "Отделение пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard (Int(appState.state.current.pacient.room) ?? -1) > 0 && (Int(appState.state.current.pacient.room) ?? -1) < 150 else {
+            message = "№ палаты пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.pacient.contactPerson.isEmpty || appState.state.current.pacient.contactPerson.count > 2 else {
+            message = "Контактное лицо пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.pacient.phoneNumber.count >= 6 && appState.state.current.pacient.phoneNumber.count <= 11 else {
+            message = "Номер телефона пациента заполнен некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.pacient.phoneNumber.count >= 6 && appState.state.current.pacient.phoneNumber.count <= 11 else {
+            message = "Ф.И.О. лечащего врача пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        guard appState.state.current.pacient.phoneNumber.count >= 6 && appState.state.current.pacient.phoneNumber.count <= 11 else {
+            message = "Поле для ввода сожителей пациента заполнено некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        let selectedPromlems = appState.state.current.pacient.problems.filter { $0.isSelected == true }
+        guard !selectedPromlems.isEmpty &&
+                (appState.state.current.pacient.problems.last?.isSelected != true || appState.state.current.pacient.specificProblem.count > 2) else {
+            message = "Проблема пациента не выбрана или заполнена некорректно"
+            showingAlert.toggle()
+            return false
+        }
+        
+        return true
     }
 }
 

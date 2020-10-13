@@ -45,7 +45,11 @@ struct ScreeningTestView: View {
         .padding(.horizontal, -15)
         .navigationBarTitle(Text("Скрининг \"Возраст не помеха\""), displayMode: .inline)
         .navigationBarItems(
-            trailing: HeaderNextButtonView(willMoveToNextScreen: $willMoveToBartelIndexViewScreen)
+            trailing:
+                HeaderNextButtonView(action: {
+                    appState.state.current.screeningTest.isSaved = true
+                    self.willMoveToBartelIndexViewScreen.toggle()
+                })
         )
         NavigationLink(destination: BartelIndexView(),
                        isActive: $willMoveToBartelIndexViewScreen) { }
