@@ -13,6 +13,10 @@ struct ScreeningTestView: View {
     @EnvironmentObject var appState: AppState
     
     @State private var willMoveToBartelIndexViewScreen = false
+    
+    init() {
+        UITableView.appearance().contentInset.top = -35
+    }
 
     var body: some View {
         Form {

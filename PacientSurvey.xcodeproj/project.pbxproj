@@ -36,6 +36,8 @@
 		7CF2315B2534E6C400D4DD98 /* ScreeningTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2315A2534E6C400D4DD98 /* ScreeningTestModel.swift */; };
 		7CF231632534E8A800D4DD98 /* FunctionalTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF231622534E8A800D4DD98 /* FunctionalTestView.swift */; };
 		7CF2316E2534E97B00D4DD98 /* FunctionalTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */; };
+		7CF231762535C44000D4DD98 /* AnswerBartelIndexTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */; };
+		7CF2317B2535CD9D00D4DD98 /* BartelIndexTestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF2317A2535CD9D00D4DD98 /* BartelIndexTestItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		7CF2315A2534E6C400D4DD98 /* ScreeningTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreeningTestModel.swift; sourceTree = "<group>"; };
 		7CF231622534E8A800D4DD98 /* FunctionalTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalTestView.swift; sourceTree = "<group>"; };
 		7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalTestModel.swift; sourceTree = "<group>"; };
+		7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerBartelIndexTestModel.swift; sourceTree = "<group>"; };
+		7CF2317A2535CD9D00D4DD98 /* BartelIndexTestItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartelIndexTestItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,7 @@
 				7CF23143253489BF00D4DD98 /* AnthropometryModel.swift */,
 				7CF2316D2534E97B00D4DD98 /* FunctionalTestModel.swift */,
 				7CF2315A2534E6C400D4DD98 /* ScreeningTestModel.swift */,
+				7CF231752535C44000D4DD98 /* AnswerBartelIndexTestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */,
 				7CF2313E25347A2700D4DD98 /* PickerView.swift */,
 				7CF23148253491FA00D4DD98 /* HeaderNextButtonView.swift */,
+				7CF2317A2535CD9D00D4DD98 /* BartelIndexTestItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -461,6 +467,8 @@
 				7CF231352534567100D4DD98 /* PacientModel.swift in Sources */,
 				7CF2313A25345C0900D4DD98 /* DBRepository.swift in Sources */,
 				7CBDAE13253244B600246A2F /* NumberTextFieldView.swift in Sources */,
+				7CF2317B2535CD9D00D4DD98 /* BartelIndexTestItemView.swift in Sources */,
+				7CF231762535C44000D4DD98 /* AnswerBartelIndexTestModel.swift in Sources */,
 				7CF2315B2534E6C400D4DD98 /* ScreeningTestModel.swift in Sources */,
 				7C603CAB252EF6FF002FA730 /* PacientView.swift in Sources */,
 			);
