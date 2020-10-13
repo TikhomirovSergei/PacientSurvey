@@ -9,24 +9,24 @@
 import SwiftUI
 
 protocol DBRepository {
-    func saveToStore(data: AppState.UserData)
-    func loadFromStore() -> AppState.UserData
+    func saveToStore(data: AppState.State)
+    func loadFromStore() -> AppState.State
 }
 
 struct UserDefaultsDBRepository: DBRepository {
     
-    func saveToStore(data: AppState.UserData) {
+    func saveToStore(data: AppState.State) {
         if let encoded = try? JSONEncoder().encode(data) {
             let defaults = UserDefaults.standard
-             defaults.set(encoded, forKey: "userData")
+             defaults.set(encoded, forKey: "state")
         }
     }
     
-    func loadFromStore() -> AppState.UserData {
-        if let savedStore = UserDefaults.standard.object(forKey: "userData") as? Data,
-           let loadedStore = try? JSONDecoder().decode(AppState.UserData.self, from: savedStore) {
+    func loadFromStore() -> AppState.State {
+        if let savedStore = UserDefaults.standard.object(forKey: "state") as? Data,
+           let loadedStore = try? JSONDecoder().decode(AppState.State.self, from: savedStore) {
             return loadedStore
         }
-        return AppState.UserData()
+        return AppState.State()
     }
 }

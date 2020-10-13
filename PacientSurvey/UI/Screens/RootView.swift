@@ -41,9 +41,10 @@ private extension RootView {
             Button(action: {
                 print("test")
             }, label: {
-                Image("SettingsIcon").resizable()
+                Image(systemName: "gearshape")
+                    .frame(width: 60, height: 60).imageScale(.large)
             })
-                .frame(width: 44, height: 44)
+                .frame(width: 60, height: 60)
         }
             .offset(x: geometry.size.width - 80, y: 10)
             .padding().frame(height: 44)
@@ -64,6 +65,7 @@ private extension RootView {
 
                 Button(action: {
                     self.willMoveToPacientViewScreen = true
+                    appState.state.current.clear()
                 }, label: {
                     Text("Start inspection")
                         .font(.system(size: 18))
@@ -76,7 +78,7 @@ private extension RootView {
                     .cornerRadius(25)
 
                 Button(action: {
-                    print("test")
+                    self.willMoveToPacientViewScreen = true
                 }, label: {
                     Text("Continue inspection")
                         .font(.system(size: 18))

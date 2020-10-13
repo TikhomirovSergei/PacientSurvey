@@ -16,7 +16,7 @@ struct LineWithDatePicker: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            DatePicker(title, selection: $date, displayedComponents: .date)
+            DatePicker(title, selection: $date, in: ...Date(), displayedComponents: .date)
                 .foregroundColor(.black)
                 .padding(.top, 15)
                 .padding(.leading, 12)

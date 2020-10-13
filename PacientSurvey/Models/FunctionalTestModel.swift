@@ -11,7 +11,7 @@ import SwiftUI
 let speedArray: [String] = [Int](0 ... 50).map {
     let dec = $0 / 10
     let mod = $0 % 10
-    return String(dec) + "," + String(mod)
+    return String(dec) + "." + String(mod)
 }
 let testGetUpAndGoArray: [String] = [Int](5 ... 35).map { String($0) }
 let semiTandemPositionArray = ["< 10", ">= 10"]
@@ -51,4 +51,3 @@ struct FunctionalTestModel: Equatable, Codable {
             lhs.standUpIndex == rhs.standUpIndex
     }
 }
-

@@ -20,22 +20,22 @@ struct FunctionalTestView: View {
 
     var body: some View {
         Form {
-            PickerView(currentIndex: $appState.userData.functionalTest.walkingSpeed,
+            PickerView(currentIndex: $appState.state.current.functionalTest.walkingSpeed,
                         text: "Скорость ходьбы, м/с",
                         array: speedArray)
-            PickerView(currentIndex: $appState.userData.functionalTest.testGetUpAndGo,
+            PickerView(currentIndex: $appState.state.current.functionalTest.testGetUpAndGo,
                         text: "Тест \"Встань и иди\", сек",
                         array: testGetUpAndGoArray)
-            PickerView(currentIndex: $appState.userData.functionalTest.positionFeetTogether,
+            PickerView(currentIndex: $appState.state.current.functionalTest.positionFeetTogether,
                         text: "Положение \"Стопы вместе\", сек",
                         array: semiTandemPositionArray)
-            PickerView(currentIndex: $appState.userData.functionalTest.semiTandemPosition,
+            PickerView(currentIndex: $appState.state.current.functionalTest.semiTandemPosition,
                         text: "Полутандемное положение, сек",
                         array: semiTandemPositionArray)
-            PickerView(currentIndex: $appState.userData.functionalTest.tandemPosition,
+            PickerView(currentIndex: $appState.state.current.functionalTest.tandemPosition,
                         text: "Тандемное положение, сек",
                         array: tandemPositionArray)
-            PickerView(currentIndex: $appState.userData.functionalTest.standUpIndex,
+            PickerView(currentIndex: $appState.state.current.functionalTest.standUpIndex,
                         text: "Время 5-ти подъемов со стула, сек",
                         array: standUpArray)
         }

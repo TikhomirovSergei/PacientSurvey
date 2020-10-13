@@ -12,10 +12,9 @@ let heightArray: [String] = [Int](130 ... 200).map { String($0) }
 let weightArray: [String] = [Int](400 ... 2000).map {
     let dec = $0 / 10
     let mod = $0 % 10
-    return String(dec) + "," + String(mod)
+    return String(dec) + "." + String(mod)
 }
 let waistCircumferenceArray: [String] = [Int](60 ... 160).map { String($0) }
-let BMIArray: [String] = [Int](15 ... 50).map { String($0) }
 let volumeArray: [String] = [Int](25 ... 100).map { String($0) }
 
 struct AnthropometryModel: Equatable, Codable {
@@ -23,7 +22,7 @@ struct AnthropometryModel: Equatable, Codable {
     var heightIndex: Int = -1
     var weightIndex: Int = -1
     var growthInYouth: Int = -1
-    var BMI: Int = -1
+    var BMI: String = ""
     var waistCircumference: Int = -1
     var shinVolume: Int = -1
     var shoulderVolume: Int = -1
@@ -37,7 +36,7 @@ struct AnthropometryModel: Equatable, Codable {
         self.heightIndex = -1
         self.weightIndex = -1
         self.growthInYouth = -1
-        self.BMI = -1
+        self.BMI = ""
         self.waistCircumference = -1
         self.shinVolume = -1
         self.shoulderVolume = -1

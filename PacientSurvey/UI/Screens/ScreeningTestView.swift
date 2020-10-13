@@ -16,25 +16,25 @@ struct ScreeningTestView: View {
 
     var body: some View {
         Form {
-            Toggle(isOn: $appState.userData.screeningTest.isLostWeight) {
+            Toggle(isOn: $appState.state.current.screeningTest.isLostWeight) {
                 Text("Похудели ли Вы на 5 и более кг за последние 6 месяцев?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isReducedVisionOrHearing) {
+            Toggle(isOn: $appState.state.current.screeningTest.isReducedVisionOrHearing) {
                 Text("Испытываете ли Вы какие-то ограничения в повседневной жизни из-за снижения Зрения или Слуха?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isFallInjuries) {
+            Toggle(isOn: $appState.state.current.screeningTest.isFallInjuries) {
                 Text("Были ли у Вас в течение последнего года травмы, связанные с падением?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isDepressedMood) {
+            Toggle(isOn: $appState.state.current.screeningTest.isDepressedMood) {
                 Text("Чувствуете ли Вы себя подавленным, грустным или встревоженным на протяжении последний недель?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isMemoryProblems) {
+            Toggle(isOn: $appState.state.current.screeningTest.isMemoryProblems) {
                 Text("Есть ли у Вас проблемы с Памятью, пониманием, ориентацией или способностью планировать?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isUrinaryIncontinence) {
+            Toggle(isOn: $appState.state.current.screeningTest.isUrinaryIncontinence) {
                 Text("Страдаете ли Вы недержанием Мочи?")
             }
-            Toggle(isOn: $appState.userData.screeningTest.isDifficultToMove) {
+            Toggle(isOn: $appState.state.current.screeningTest.isDifficultToMove) {
                 Text("Испытываете ли Вы трудности в перемещении по дому или на улице?")
             }
         }

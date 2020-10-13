@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let appState = AppState()
-        appState.userData = UserDefaultsDBRepository().loadFromStore()
+        appState.state = UserDefaultsDBRepository().loadFromStore()
 
         let contentView = RootView()
 

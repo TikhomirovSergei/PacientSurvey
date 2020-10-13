@@ -8,40 +8,37 @@
 
 import SwiftUI
 
-class AppState: ObservableObject, Equatable {
-    @Published var userData = UserData()
+class AppState: ObservableObject {
+    @Published var state = State()
     @Published var system = System()
 }
 
 extension AppState {
-    class UserData: Equatable, Codable {
+    class State: Codable {
+        var current = UserData()
+        var all: [UserData] = [UserData()]
+    }
+}
+
+extension AppState {
+    class UserData: Codable {
         var pacient = PacientModel()
         var anthropometry = AnthropometryModel()
         var functionalTest = FunctionalTestModel()
         var screeningTest = ScreeningTestModel()
-
-        static func == (lhs: AppState.UserData, rhs: AppState.UserData) -> Bool {
-            return lhs.pacient == rhs.pacient &&
-                lhs.anthropometry == rhs.anthropometry &&
-                lhs.functionalTest == rhs.functionalTest &&
-                lhs.screeningTest == rhs.screeningTest
+        
+        func clear() {
+            self.pacient = PacientModel()
+            self.anthropometry = AnthropometryModel()
+            self.functionalTest = FunctionalTestModel()
+            self.screeningTest = ScreeningTestModel()
         }
     }
 }
 
 extension AppState {
-    class System: Equatable {
+    class System {
         var isActive: Bool = false
         var keyboardHeight: CGFloat = 0
-        
-        static func == (lhs: AppState.System, rhs: AppState.System) -> Bool {
-            return lhs.isActive == rhs.isActive &&
-                lhs.keyboardHeight == rhs.keyboardHeight
-        }
     }
-}
-
-func == (lhs: AppState, rhs: AppState) -> Bool {
-    return lhs.userData == rhs.userData &&
-        lhs.system == rhs.system
 }
