@@ -13,7 +13,7 @@ struct RootView: View {
     @Environment(\.locale) private var locale: Locale
     @EnvironmentObject var appState: AppState
 
-    @State private var selection: Int? = 1
+    @State private var willMoveToResultListViewScreen = false
     
     var body: some View {
         NavigationView {
@@ -26,7 +26,9 @@ struct RootView: View {
                 
                 NavigationLink(destination:
                                 VStack {
-                                    if appState.state.current.screeningTest.isSaved {
+                                    if appState.state.current.bartelIndexTest.isSaved {
+                                        PacientView()
+                                    } else if appState.state.current.screeningTest.isSaved {
                                         BartelIndexView()
                                     } else if appState.state.current.functionalTest.isSaved {
                                         ScreeningTestView()
@@ -39,6 +41,8 @@ struct RootView: View {
                                     }
                                 },
                                 isActive: $appState.isHiddenRootView) { }
+                NavigationLink(destination: ResultListView(),
+                                isActive: $willMoveToResultListViewScreen) { }
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)
@@ -77,13 +81,17 @@ struct RootView: View {
                     .frame(width: geometry.size.width)
                     .multilineTextAlignment(.center)
                 
-                ButtonView(text: Text("Start inspection")) {
+                ButtonView(text: Text("Start inspection"),
+                           accentColor: Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
+                           background: Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1))) {
                     appState.isHiddenRootView.toggle()
                     appState.state.current.clear()
                 }
 
-                if appState.state.current.pacient.isSaved {
-                    ButtonView(text: Text("Continue inspection")) {
+                if appState.state.current.pacient.isSaved && !appState.state.current.bartelIndexTest.isSaved {
+                    ButtonView(text: Text("Continue inspection"),
+                               accentColor: Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
+                               background: Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1))) {
                         appState.isHiddenRootView.toggle()
                     }
                 }
@@ -96,18 +104,11 @@ struct RootView: View {
     private func footerView(_ geometry: GeometryProxy) -> some View {
         HStack {
             Spacer()
-            Button(action: {
-                print("test")
-            }, label: {
-                Text("Show inspection list")
-                    .font(.system(size: 18))
-                    .fontWeight(.bold)
-            })
-                .padding()
-                .frame(width: 300, height: 50)
-                .accentColor(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
-                .background(Color.init(#colorLiteral(red: 0.9497030377, green: 0.9456732869, blue: 0.9528283477, alpha: 1)))
-                .cornerRadius(25)
+            ButtonView(text: Text("Show inspection list"),
+                       accentColor: Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)),
+                       background: Color.init(#colorLiteral(red: 0.9497030377, green: 0.9456732869, blue: 0.9528283477, alpha: 1))) {
+                willMoveToResultListViewScreen.toggle()
+            }
             Spacer()
         }
             .offset(x: 0, y: geometry.size.height - 75)

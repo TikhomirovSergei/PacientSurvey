@@ -23,6 +23,7 @@
 		7CBDAE1E25324CDB00246A2F /* LineWithDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */; };
 		7CBDAE2325324F4000246A2F /* AnthropometryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDAE2225324F4000246A2F /* AnthropometryView.swift */; };
 		7CE565622536EF1100F8E601 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE565612536EF1100F8E601 /* ButtonView.swift */; };
+		7CE565672536F45D00F8E601 /* ResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE565662536F45D00F8E601 /* ResultListView.swift */; };
 		7CE688E6252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7CE688E5252E6022001C2C27 /* FloatingLabelTextFieldSwiftUI */; };
 		7CE688EE252F50AB001C2C27 /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688ED252F50AB001C2C27 /* ProblemModel.swift */; };
 		7CE688F2252F530C001C2C27 /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE688F1252F530C001C2C27 /* ProblemCell.swift */; };
@@ -85,6 +86,7 @@
 		7CBDAE1D25324CDB00246A2F /* LineWithDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineWithDatePicker.swift; sourceTree = "<group>"; };
 		7CBDAE2225324F4000246A2F /* AnthropometryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropometryView.swift; sourceTree = "<group>"; };
 		7CE565612536EF1100F8E601 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		7CE565662536F45D00F8E601 /* ResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListView.swift; sourceTree = "<group>"; };
 		7CE688ED252F50AB001C2C27 /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
 		7CE688F1252F530C001C2C27 /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
 		7CF2312F253454EB00D4DD98 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				7CF231622534E8A800D4DD98 /* FunctionalTestView.swift */,
 				7CF231502534953300D4DD98 /* ScreeningTestView.swift */,
 				7CF231552534E67D00D4DD98 /* BartelIndexView.swift */,
+				7CE565662536F45D00F8E601 /* ResultListView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				7CF2313A25345C0900D4DD98 /* DBRepository.swift in Sources */,
 				7CBDAE13253244B600246A2F /* NumberTextFieldView.swift in Sources */,
 				7CF2317B2535CD9D00D4DD98 /* BartelIndexTestItemView.swift in Sources */,
+				7CE565672536F45D00F8E601 /* ResultListView.swift in Sources */,
 				7CE565622536EF1100F8E601 /* ButtonView.swift in Sources */,
 				7CF231762535C44000D4DD98 /* AnswerBartelIndexTestModel.swift in Sources */,
 				7CF2315B2534E6C400D4DD98 /* ScreeningTestModel.swift in Sources */,

@@ -18,7 +18,7 @@ struct UserDefaultsDBRepository: DBRepository {
     func saveToStore(data: AppState.State) {
         if let encoded = try? JSONEncoder().encode(data) {
             let defaults = UserDefaults.standard
-             defaults.set(encoded, forKey: "state")
+            defaults.set(encoded, forKey: "state")
         }
     }
     

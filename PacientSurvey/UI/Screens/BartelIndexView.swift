@@ -63,7 +63,6 @@ struct BartelIndexView: View {
                     if self.validateFields() {
                         appState.state.current.bartelIndexTest.isSaved = true
                         appState.state.all.append(appState.state.current)
-                        appState.state.current.clear()
                         appState.isHiddenRootView = false
                     }
                 })

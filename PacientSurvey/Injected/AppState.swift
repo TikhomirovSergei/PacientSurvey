@@ -18,12 +18,12 @@ extension AppState {
     class State: Codable {
         var isHiddenRootView = false
         var current = UserData()
-        var all: [UserData] = [UserData()]
+        var all: [UserData] = []
     }
 }
 
 extension AppState {
-    class UserData: Codable {
+    class UserData: Identifiable, Codable {
         var pacient = PacientModel()
         var anthropometry = AnthropometryModel()
         var functionalTest = FunctionalTestModel()
