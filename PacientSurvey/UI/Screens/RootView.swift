@@ -62,6 +62,11 @@ struct RootView: View {
     private func bodyView(_ geometry: GeometryProxy) -> some View {
         HStack {
             VStack {
+                Image("Doctor")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .padding(.top, -50)
+                
                 Text("Welcome to the program for")
                     .font(.system(size: 20))
                     .multilineTextAlignment(.center)
