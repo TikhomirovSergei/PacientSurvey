@@ -52,13 +52,13 @@ struct AnthropometryView: View {
             Alert(title: Text(message))
         }
         .padding(.horizontal, -15)
-        .navigationBarTitle(Text("Антропометрия"), displayMode: .inline)
+        .navigationBarTitle(willMoveToFunctionalTestViewScreen ? Text("") : Text("Антропометрия"))
         .navigationBarItems(
             trailing:
-                HeaderNextButtonView(action: {
+                HeaderNextButtonView(imageName: "chevron.right", action: {
                     if self.validateFields() {
                         appState.state.current.anthropometry.isSaved = true
-                        self.willMoveToFunctionalTestViewScreen.toggle()
+                        self.willMoveToFunctionalTestViewScreen = true
                     }
                 })
         )

@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct RootView: View {
-
+    
+    @Environment(\.locale) private var locale: Locale
     @EnvironmentObject var appState: AppState
 
-    @State private var willMoveToPacientViewScreen = false
-    @State var selection: Int? = 1
+    @State private var selection: Int? = 1
     
     var body: some View {
         NavigationView {
@@ -23,20 +23,29 @@ struct RootView: View {
                     self.bodyView(geometry)
                     self.footerView(geometry)
                 }
+                
                 NavigationLink(destination:
-                    PacientView(),
-                    isActive: $willMoveToPacientViewScreen
-                ) { }
+                                VStack {
+                                    if appState.state.current.screeningTest.isSaved {
+                                        BartelIndexView()
+                                    } else if appState.state.current.functionalTest.isSaved {
+                                        ScreeningTestView()
+                                    } else if appState.state.current.anthropometry.isSaved {
+                                        FunctionalTestView()
+                                    } else if appState.state.current.pacient.isSaved {
+                                        AnthropometryView()
+                                    } else {
+                                        PacientView()
+                                    }
+                                },
+                                isActive: $appState.isHiddenRootView) { }
             }
+            .navigationBarTitle("")
             .navigationBarHidden(true)
         }
     }
-}
-
-// MARK: - Displaying buttons view
-
-private extension RootView {
-    func headerView(_ geometry: GeometryProxy) -> some View {
+    
+    private func headerView(_ geometry: GeometryProxy) -> some View {
         HStack(spacing: 20) {
             Button(action: {
                 print("test")
@@ -49,8 +58,8 @@ private extension RootView {
             .offset(x: geometry.size.width - 80, y: 10)
             .padding().frame(height: 44)
     }
-
-    func bodyView(_ geometry: GeometryProxy) -> some View {
+    
+    private func bodyView(_ geometry: GeometryProxy) -> some View {
         HStack {
             VStack {
                 Text("Welcome to the program for")
@@ -62,40 +71,24 @@ private extension RootView {
                     .fontWeight(.bold)
                     .frame(width: geometry.size.width)
                     .multilineTextAlignment(.center)
-
-                Button(action: {
-                    self.willMoveToPacientViewScreen = true
+                
+                ButtonView(text: Text("Start inspection")) {
+                    appState.isHiddenRootView.toggle()
                     appState.state.current.clear()
-                }, label: {
-                    Text("Start inspection")
-                        .font(.system(size: 18))
-                        .fontWeight(.bold)
-                })
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                    .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
-                    .cornerRadius(25)
+                }
 
-                Button(action: {
-                    self.willMoveToPacientViewScreen = true
-                }, label: {
-                    Text("Continue inspection")
-                        .font(.system(size: 18))
-                        .fontWeight(.bold)
-                })
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .accentColor(Color.init(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                    .background(Color.init(#colorLiteral(red: 0.3671402931, green: 0.4564976096, blue: 0.9255109429, alpha: 1)))
-                    .cornerRadius(25)
+                if appState.state.current.pacient.isSaved {
+                    ButtonView(text: Text("Continue inspection")) {
+                        appState.isHiddenRootView.toggle()
+                    }
+                }
             }
         }
             .frame(width: geometry.size.width, height: geometry.size.height)
             .padding(.bottom, 50)
     }
 
-    func footerView(_ geometry: GeometryProxy) -> some View {
+    private func footerView(_ geometry: GeometryProxy) -> some View {
         HStack {
             Spacer()
             Button(action: {

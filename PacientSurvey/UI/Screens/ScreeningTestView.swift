@@ -43,12 +43,12 @@ struct ScreeningTestView: View {
             }
         }
         .padding(.horizontal, -15)
-        .navigationBarTitle(Text("Скрининг \"Возраст не помеха\""), displayMode: .inline)
+        .navigationBarTitle(willMoveToBartelIndexViewScreen ? "" : "Скрининг \"Возраст не помеха\"", displayMode: .inline)
         .navigationBarItems(
             trailing:
-                HeaderNextButtonView(action: {
+                HeaderNextButtonView(imageName: "chevron.right", action: {
                     appState.state.current.screeningTest.isSaved = true
-                    self.willMoveToBartelIndexViewScreen.toggle()
+                    self.willMoveToBartelIndexViewScreen = true
                 })
         )
         NavigationLink(destination: BartelIndexView(),

@@ -76,13 +76,13 @@ struct PacientView: View {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         )
-        .navigationBarTitle(Text("Общая информация о пациенте"), displayMode: .inline)
+        .navigationBarTitle(willMoveToBalanceTestViewScreen ? "" : "Общая информация о пациенте", displayMode: .inline)
         .navigationBarItems(
             trailing:
-                HeaderNextButtonView(action: {
+                HeaderNextButtonView(imageName: "chevron.right", action: {
                     if self.validateFields() {
                         appState.state.current.pacient.isSaved = true
-                        self.willMoveToBalanceTestViewScreen.toggle()
+                        self.willMoveToBalanceTestViewScreen = true
                     }
                 })
         )

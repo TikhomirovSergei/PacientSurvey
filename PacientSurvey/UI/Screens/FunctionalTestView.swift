@@ -45,13 +45,13 @@ struct FunctionalTestView: View {
             Alert(title: Text(message))
         }
         .padding(.horizontal, -15)
-        .navigationBarTitle(Text("Функциональный тест"), displayMode: .inline)
+        .navigationBarTitle(willMoveToScreeningTestViewScreen ? "" : "Функциональный тест", displayMode: .inline)
         .navigationBarItems(
             trailing:
-                HeaderNextButtonView(action: {
+                HeaderNextButtonView(imageName: "chevron.right", action: {
                     if self.validateFields() {
                         appState.state.current.functionalTest.isSaved = true
-                        self.willMoveToScreeningTestViewScreen.toggle()
+                        self.willMoveToScreeningTestViewScreen = true
                     }
                 })
         )

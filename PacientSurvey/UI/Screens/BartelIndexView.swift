@@ -12,7 +12,6 @@ struct BartelIndexView: View {
     
     @EnvironmentObject var appState: AppState
     
-    @State private var willMoveToRootViewScreen = false
     @State private var message = ""
     @State private var showingAlert = false
 
@@ -57,18 +56,18 @@ struct BartelIndexView: View {
             Alert(title: Text(message))
         }
         .padding(.horizontal, -15)
-        .navigationBarTitle(Text("Индекс Бартел"), displayMode: .inline)
+        .navigationBarTitle("Индекс Бартел", displayMode: .inline)
         .navigationBarItems(
             trailing:
-                HeaderNextButtonView(action: {
+                HeaderNextButtonView(imageName: "checkmark.circle", action: {
                     if self.validateFields() {
                         appState.state.current.bartelIndexTest.isSaved = true
-                        self.willMoveToRootViewScreen.toggle()
+                        appState.state.all.append(appState.state.current)
+                        appState.state.current.clear()
+                        appState.isHiddenRootView = false
                     }
                 })
         )
-        NavigationLink(destination: RootView(),
-                       isActive: $willMoveToRootViewScreen) { }
     }
     
     private func validateFields() -> Bool {

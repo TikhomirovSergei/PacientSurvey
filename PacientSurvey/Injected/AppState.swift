@@ -9,12 +9,14 @@
 import SwiftUI
 
 class AppState: ObservableObject {
+    @Published var isHiddenRootView = false
     @Published var state = State()
     @Published var system = System()
 }
 
 extension AppState {
     class State: Codable {
+        var isHiddenRootView = false
         var current = UserData()
         var all: [UserData] = [UserData()]
     }
